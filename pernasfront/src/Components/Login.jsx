@@ -31,11 +31,11 @@ const Login = () => {
       <img src={logo} alt="" />
 
         <div className="input-field">
-            <input type="email" placeholder="E-mail"  id="email" onChange={(e) => setUsername(e.target.value)}/>
+            <input type="email" placeholder="E-mail"  className="email" onChange={(e) => setUsername(e.target.value)}/>
             <FaUser className="icon" />
         </div>
         <div className="input-field">
-            <input type="password" placeholder="Senha" id="password" onChange={(e) => setPassword(e.target.value)}/>
+            <input type="password" placeholder="Senha" className="password" onChange={(e) => setPassword(e.target.value)}/>
             <FaLock className="icon" />
         </div>
 
