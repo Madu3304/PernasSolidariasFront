@@ -1,8 +1,41 @@
+.header {
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding-left: 10px;
+}
+
+.header .h1 {
+    color: #7fd493;
+    font-size: 25px;
+    margin-right: 6px;
+}
+
+.header .h2 {
+    color: #6ce8ef;
+    margin-right: 5px;
+}
+
+.header .h3 {
+    color: #7fd493;
+}
+
+.header .img{
+    height: 50px;
+    margin-right: 10px;
+}
+
 .container {
     width: 450px;
     height: 445px;
     background-color: #fff;
-    border: -5px solid #fff;
+    border: -5px #fff;
     padding: 40px;
     border-radius: 10px;
 }

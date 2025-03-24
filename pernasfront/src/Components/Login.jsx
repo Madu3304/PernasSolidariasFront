@@ -1,5 +1,6 @@
 import { FaUser, FaLock } from "react-icons/fa"
 import logo from "../assets/logo.png"
+import logo2 from "../assets/logo_sem fundo.png"
 
 import { useState } from "react"
 import "./Login.css"
@@ -16,6 +17,15 @@ const Login = () => {
     };
 
   return (
+    <div>
+      <div className="header">
+      <img src={logo2} alt=""  className="img"/>
+        <h1 className="h1">Pernas  </h1>
+        <h2 className="h2">Solidarias |</h2>
+        <h3 className="h3">Entrar</h3>
+      </div>
+      
+
     <div className='container'>
       <form>
       <img src={logo} alt="" />
@@ -47,6 +57,7 @@ const Login = () => {
 
 
       </form>
+    </div>
     </div>
   )
 }
