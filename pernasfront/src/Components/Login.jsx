@@ -1,4 +1,5 @@
 import { FaUser, FaLock } from "react-icons/fa"
+import logo from "../assets/logo.png"
 
 import { useState } from "react"
 import "./Login.css"
@@ -17,8 +18,7 @@ const Login = () => {
   return (
     <div className='container'>
       <form>
-        <img src="" alt="" />
-      <img src="../assets/logo.png"></img>
+      <img src={logo} alt="" />
 
         <div className="input-field">
             <input type="email" placeholder="E-mail"  id="email" onChange={(e) => setUsername(e.target.value)}/>
