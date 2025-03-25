@@ -3,9 +3,8 @@ import logo from "../assets/logo.png"
 import logo2 from "../assets/logo_sem fundo.png"
 
 import { useState } from "react"
-import "./Login.css"
 
-const Login = () => {
+const LogCadeirantein = () => {
     const [ username, setUsername] = useState("")
     const [ password, setPassword] = useState("")
 
@@ -62,4 +61,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Cadeirante
