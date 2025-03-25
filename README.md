@@ -62,11 +62,12 @@ tela reresentado a Arquietura na tela 10: https://www.canva.com/design/DAGgJffJC
 Não usaremos APIs, está no mesmo local, com base nesta questão nossa arquitetura se encaixa nas caracteriza-se com monolítica, com isso usaremos o padrão de design MVC.
 
 Cronograma de Entregas (Quinzenal), levando em consideração que ambos os desenvolvedores dividiram cada atividade:
+
 08/03/2025 Definição do banco de dados e estrutura inicial do back-end.
 
-22/03/2025 Desenvolvimento dos endpoints de cadastro de corredores.
+18/03/2025 inicio do back-end.
 
-29/03/2025 Andamento de 50% do trabalho.
+29/03/2025 Andamento de 50% do front.
 
 05/04/2025 Implementação do front-end para cadastro e listagem de corredores.
 
