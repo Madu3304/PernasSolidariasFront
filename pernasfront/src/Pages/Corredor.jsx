@@ -1,7 +1,7 @@
-import "../Styles/Cadeirante.css"
+import "../Styles/Corredor.css"
 import logo from "../assets/logo_sem fundo.png"
 
-const Cadeirante = () =>{
+const Corredor = () =>{
 
   return(
     <div className="divPrincipal">
@@ -27,11 +27,6 @@ const Cadeirante = () =>{
         <input type="text" name="distancia"/>
         <label htmlFor="">Última Corrida:</label>
         <input type="text" name="ultCorrida"/>
-        <div className="checkbox-container">
-          <input type="checkbox" name="" id="" />
-          <a>Possui cadeira própria?</a>
-          {/* <label htmlFor="">Possui cadeira própria?</label> */}
-        </div>
         <input type="submit" value="Cadastrar" className="botaoCadastrar" />
       </form>
 
@@ -42,4 +37,4 @@ const Cadeirante = () =>{
 
 }
 
-export default Cadeirante;
+export default Corredor;

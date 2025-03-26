@@ -1,7 +1,7 @@
-import "../Styles/Cadeirante.css"
+import "../Styles/Evento.css"
 import logo from "../assets/logo_sem fundo.png"
 
-const Cadeirante = () =>{
+const Evento = () =>{
 
   return(
     <div className="divPrincipal">
@@ -17,21 +17,10 @@ const Cadeirante = () =>{
       </header>
 
       <form action="post" className="formulario">
-        <label htmlFor="">Nome Completo:</label>
+        <label htmlFor="">Nome da Corrida:</label>
         <input type="text" name="nomeCompleto" />
-        <label htmlFor="">CPF:</label>
-        <input type="text" name="cpf" />
-        <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamCamisa"/>
         <label htmlFor="">Distância:</label>
         <input type="text" name="distancia"/>
-        <label htmlFor="">Última Corrida:</label>
-        <input type="text" name="ultCorrida"/>
-        <div className="checkbox-container">
-          <input type="checkbox" name="" id="" />
-          <a>Possui cadeira própria?</a>
-          {/* <label htmlFor="">Possui cadeira própria?</label> */}
-        </div>
         <input type="submit" value="Cadastrar" className="botaoCadastrar" />
       </form>
 
@@ -42,4 +31,4 @@ const Cadeirante = () =>{
 
 }
 
-export default Cadeirante;
+export default Evento;
