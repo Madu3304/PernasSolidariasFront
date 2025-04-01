@@ -61,7 +61,7 @@ header img {
     height: 100%;
 }
 
-.formulario{
+.formularioCorredor{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@ header img {
 }
 
 
-.formulario input[type="text"]{
+.formularioCorredor input[type="text"]{
     width: 33%;
     height: 40px;
     border-radius: 10px;
@@ -79,13 +79,13 @@ header img {
     font-size: 110%;
 }
 
-.formulario input[type="submit"]{
+.formularioCorredor input[type="submit"]{
     background-color: #3AD690;
     border-radius: 10px;
     font-size: 150%;
 }
 
-.formulario label{
+.formularioCorredor label{
     padding-top: 1%;
     font-size: 150%;
     display: block;
@@ -94,21 +94,12 @@ header img {
     margin-bottom: 5px;
 }
 
-.formulario input{
+.formularioCorredor input{
     margin-bottom: 1%;
     border: none;
 }
 
-.checkbox-container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 0.3%;
-    font-size: 130%;
-    align-items: middle;
-}
-
-.botaoCadastrar{
+.botaoCadastrarCorredor{
     width: 30%;
     height: 45px;
     font-weight: bold;

@@ -61,7 +61,7 @@ header img {
     height: 100%;
 }
 
-.formulario{
+.formularioCadeirante{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@ header img {
 }
 
 
-.formulario input[type="text"]{
+.formularioCadeirante input[type="text"]{
     width: 33%;
     height: 40px;
     border-radius: 10px;
@@ -79,13 +79,13 @@ header img {
     font-size: 110%;
 }
 
-.formulario input[type="submit"]{
+.formularioCadeirante input[type="submit"]{
     background-color: #3AD690;
     border-radius: 10px;
     font-size: 150%;
 }
 
-.formulario label{
+.formularioCadeirante label{
     padding-top: 1%;
     font-size: 150%;
     display: block;
@@ -94,12 +94,12 @@ header img {
     margin-bottom: 5px;
 }
 
-.formulario input{
+.formularioCadeirante input{
     margin-bottom: 1%;
     border: none;
 }
 
-.checkbox-container{
+.checkbox-container-cadeirante{
     display: flex;
     justify-content: center;
     width: 100%;
@@ -108,7 +108,7 @@ header img {
     align-items: middle;
 }
 
-.botaoCadastrar{
+.botaoCadastrarCadeirante{
     width: 30%;
     height: 45px;
     font-weight: bold;

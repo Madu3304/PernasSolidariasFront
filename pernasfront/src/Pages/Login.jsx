@@ -17,7 +17,7 @@ const Login = () => {
     };
 
   return (
-    <div>
+    <div className="App">
       <div className="header">
       <img src={logo2} alt=""  className="img"/>
         <h1 className="h1">Pernas  </h1>

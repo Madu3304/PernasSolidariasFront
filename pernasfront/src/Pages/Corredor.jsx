@@ -4,7 +4,7 @@ import logo from "../assets/logo_sem fundo.png"
 const Corredor = () =>{
 
   return(
-    <div className="divPrincipal">
+    <div className="divPrincipalCorredor">
       <header>
         <img src={logo} alt="" />
         {/* <a>aaaaaaaaa</a> */}
@@ -16,18 +16,18 @@ const Corredor = () =>{
           <a>Membros</a>
       </header>
 
-      <form action="post" className="formulario">
+      <form action="post" className="formularioCorredor">
         <label htmlFor="">Nome Completo:</label>
-        <input type="text" name="nomeCompleto" />
+        <input type="text" name="nomeCompletoCorredor" />
         <label htmlFor="">CPF:</label>
-        <input type="text" name="cpf" />
+        <input type="text" name="cpfCorredor" />
         <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamCamisa"/>
+        <input type="text" name="tamCamisaCorredor"/>
         <label htmlFor="">Distância:</label>
-        <input type="text" name="distancia"/>
+        <input type="text" name="distanciaCorredor"/>
         <label htmlFor="">Última Corrida:</label>
-        <input type="text" name="ultCorrida"/>
-        <input type="submit" value="Cadastrar" className="botaoCadastrar" />
+        <input type="text" name="ultCorridaCorredor"/>
+        <input type="submit" value="Cadastrar" className="botaoCadastrarCorredor" />
       </form>
 
     </div>
