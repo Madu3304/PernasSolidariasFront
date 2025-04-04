@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
 import logo from "../assets/logo.png"
 import logo2 from "../assets/logo_sem fundo.png"
@@ -47,7 +48,7 @@ const Login = () => {
             <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <button>Entrar</button>
+        <Link to="/cadeirante"><button>Entrar</button></Link>
 
         <div className="signup-link">
             <p>

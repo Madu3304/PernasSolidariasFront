@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../Styles/Cadeirante.css"
 import logo from "../assets/logo_sem fundo.png"
 
@@ -7,13 +8,12 @@ const Cadeirante = () =>{
     <div className="divPrincipalCadeirante">
       <header>
         <img src={logo} alt="" />
-        {/* <a>aaaaaaaaa</a> */}
-          <a>Corredores</a>
-          <a>Cadeirantes</a>
-          <a>Relatórios</a>
-          <a>Corridas</a>
-          <a>Gráficos</a>
-          <a>Membros</a>
+        <Link to="/corredor">Corredores</Link>
+        <Link to="/cadeirante">Cadeirantes</Link>
+        <a>Relatórios</a>
+        <Link to="/evento">Evento</Link>
+        <a>Gráficos</a>
+        <a>Membros</a>
       </header>
 
       <form action="post" className="formularioCadeirante">
