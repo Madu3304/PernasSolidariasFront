@@ -3,6 +3,7 @@ import "../Styles/Evento.css"
 import logo from "../assets/logo_sem fundo.png"
 import { toast } from "react-toastify";
 import { useState } from "react";
+import Header from "../Components/Header";
 
 
 const Evento = () =>{
@@ -46,15 +47,7 @@ const Evento = () =>{
 
   return(
     <div className="divPrincipalEvento">
-      <header>
-        <img src={logo} alt="" />
-        <Link to="/corredor" className="tirarHiperlink">Corredores</Link>
-        <Link to="/cadeirante" className="tirarHiperlink">Cadeirantes</Link>
-        <a>Relatórios</a>
-        <Link to="/evento" className="tirarHiperlink">Evento</Link>
-        <a>Gráficos</a>
-        <a>Membros</a>
-      </header>
+      <Header />
 
       <form action="post" className="formulario">
         <label htmlFor="">Nome da Corrida:</label>
