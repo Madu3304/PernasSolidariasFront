@@ -51,10 +51,12 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    /* word-spacing: 500px; */
-    /* gap: 50; */
     font-size: 150%;
     font-weight: bold;
+}
+
+.tirarHiperlink{
+    text-decoration: none;
 }
 
 header img {
@@ -75,7 +77,7 @@ header img {
     height: 40px;
     border-radius: 10px;
     padding-left: 5px;
-    background-color: #e2e2e2;
+    background-color: #a8a7a7;  /* Cor do fundo dos inputs do formulário */
     font-size: 110%;
 }
 

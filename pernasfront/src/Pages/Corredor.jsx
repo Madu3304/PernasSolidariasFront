@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../Styles/Corredor.css"
 import logo from "../assets/logo_sem fundo.png"
 
@@ -7,13 +8,12 @@ const Corredor = () =>{
     <div className="divPrincipalCorredor">
       <header>
         <img src={logo} alt="" />
-        {/* <a>aaaaaaaaa</a> */}
-          <a>Corredores</a>
-          <a>Cadeirantes</a>
-          <a>Relatórios</a>
-          <a>Corridas</a>
-          <a>Gráficos</a>
-          <a>Membros</a>
+        <Link to="/corredor" className="tirarHiperlink">Corredores</Link>
+        <Link to="/cadeirante" className="tirarHiperlink">Cadeirantes</Link>
+        <a>Relatórios</a>
+        <Link to="/evento" className="tirarHiperlink">Evento</Link>
+        <a>Gráficos</a>
+        <a>Membros</a>
       </header>
 
       <form action="post" className="formularioCorredor">

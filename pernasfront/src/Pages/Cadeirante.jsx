@@ -8,10 +8,10 @@ const Cadeirante = () =>{
     <div className="divPrincipalCadeirante">
       <header>
         <img src={logo} alt="" />
-        <Link to="/corredor">Corredores</Link>
-        <Link to="/cadeirante">Cadeirantes</Link>
+        <Link to="/corredor" className="tirarHiperlink">Corredores</Link>
+        <Link to="/cadeirante" className="tirarHiperlink">Cadeirantes</Link>
         <a>Relatórios</a>
-        <Link to="/evento">Evento</Link>
+        <Link to="/evento" className="tirarHiperlink">Evento</Link>
         <a>Gráficos</a>
         <a>Membros</a>
       </header>
@@ -30,7 +30,6 @@ const Cadeirante = () =>{
         <div className="checkbox-container-cadeirante">
           <input type="checkbox" name="" id="" />
           <a>Possui cadeira própria?</a>
-          {/* <label htmlFor="">Possui cadeira própria?</label> */}
         </div>
         <input type="submit" value="Cadastrar" className="botaoCadastrarCadeirante" />
       </form>

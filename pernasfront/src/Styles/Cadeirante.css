@@ -61,6 +61,10 @@ header img {
     height: 100%;
 }
 
+.tirarHiperlink{
+    text-decoration: none;
+}
+
 .formularioCadeirante{
     width: 100%;
     display: flex;

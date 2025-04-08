@@ -48,7 +48,7 @@ const Login = () => {
             <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <Link to="/cadeirante"><button>Entrar</button></Link>
+        <Link to="/corredor"><button>Entrar</button></Link>
 
         <div className="signup-link">
             <p>
