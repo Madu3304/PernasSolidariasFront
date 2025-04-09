@@ -64,6 +64,19 @@ header img {
     align-items: center;
   }
   
+  .container-graficos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .grafico {
+    width: 40%;
+    min-width: 300px;
+  }
+  
  
   @media (max-width: 768px) {
     header {

@@ -10,7 +10,7 @@ import {
 } from "recharts";
 
 const Grafico = () => {
-  const [dados, setDados] = useState([]);
+  const [dados, setDados] = useState({ corredores: [], cadeirantes: [], eventos: [] });
 
   useEffect(() => {
     const buscarDados = async () => {
@@ -38,21 +38,61 @@ const Grafico = () => {
         <a>Membros</a>
       </header>
 
-      <div style={{ width: "100%", height: 400 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={dados}>
+      <div className="container-graficos">
+      <div className="grafico">
+        <h3>Corredores que mais participaram</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={dados.corredores.map(item => ({
+            nome: item.Corredor.nomeCorredor,
+            quantidade: item.quantidade
+          }))}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="nome" /> {/* substitua pelo campo certo */}
+            <XAxis dataKey="nome" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="quantidade" stroke="#8884d8" />
-          </LineChart>
+            <Bar dataKey="quantidade" fill="#00CED1" />
+          </BarChart>
         </ResponsiveContainer>
       </div>
+
+      <div className="grafico">
+        <h3>Cadeirantes que mais participaram</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={dados.cadeirantes.map(item => ({
+            nome: item.Cadeirante.nomeCadeirante,
+            quantidade: item.quantidade
+          }))}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="nome" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="quantidade" fill="#00CED1" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="grafico">
+        <h3>Eventos com mais inscrições</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={dados.eventos.map(item => ({
+            nome: item.Evento.nomeEvento,
+            quantidade: item.quantidade
+          }))}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="nome" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="quantidade" fill="#00CED1" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
     </div>
     </div>
   );
 };
 
-export default Grafico;
+export { Grafico }
