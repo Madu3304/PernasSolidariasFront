@@ -58,17 +58,17 @@ const Cadeirante = () =>{
 
       <form onSubmit={handleSubmit} className="formularioCadeirante">
         <label htmlFor="">Nome Completo:</label>
-        <input type="text" name="nomeCompletoCadeirante" value={formData.nomeCompletoCadeirante} onChange={handleChange} />
+        <input type="text" name="nomeCompletoCadeirante" value={formData.nomeCompletoCadeirante} onChange={handleSubmit} />
         <label htmlFor="">CPF:</label>
-        <input type="text" name="cpfCadeirante" value={formData.cpfCadeirante} onChange={handleChange}/>
+        <input type="text" name="cpfCadeirante" value={formData.cpfCadeirante} onChange={handleSubmit}/>
         <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamCamisaCadeirante"value={formData.tamCamisaCadeirante || ""} onChange={handleChange}/>
+        <input type="text" name="tamCamisaCadeirante"value={formData.tamCamisaCadeirante || ""} onChange={handleSubmit}/>
         <label htmlFor="">Distância:</label>
-        <input type="text" name="distanciaCadeirante"value={formData.distanciaCadeirante || ""} onChange={handleChange}/>
+        <input type="text" name="distanciaCadeirante"value={formData.distanciaCadeirante || ""} onChange={handleSubmit}/>
         <label htmlFor="">Última Corrida:</label>
-        <input type="text" name="ultCorridaCadeirante" value={formData.ultCorridaCadeirante || ""} onChange={handleChange}/>
+        <input type="text" name="ultCorridaCadeirante" value={formData.ultCorridaCadeirante || ""} onChange={handleSubmit}/>
         <div className="checkbox-container-cadeirante">
-          <input type="checkbox" name="" id="" checked={formData.possuiCadeira} onChange={handleChange}/>
+          <input type="checkbox" name="" id="" checked={formData.possuiCadeira} onChange={handleSubmit}/>
           <a>Possui cadeira própria?</a>
         </div>
         <input type="submit" value="Cadastrar" className="botaoCadastrarCadeirante" />
