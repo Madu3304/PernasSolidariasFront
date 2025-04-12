@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import Login from "../src/Pages/Login";
@@ -17,8 +17,8 @@ function App() {
         <Route path="/cadeirante" element={<Cadeirante />}></Route>
         <Route path="/corredor" element={<Corredor />}></Route>
         <Route path="/evento" element={<Evento />}></Route>
-        {/* <ToastContainer position="top-right" autoClose={3000} /> */}
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </Router>
   );
 }
