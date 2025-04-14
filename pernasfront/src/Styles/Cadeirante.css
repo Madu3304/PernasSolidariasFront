@@ -45,7 +45,7 @@ table {
 
 
 header{
-    width: 100%;
+    width: 10%;
     height: 70px;
     background-color: #3AD690;
     display: flex;
@@ -53,12 +53,18 @@ header{
     justify-content: space-around;
     /* word-spacing: 500px; */
     /* gap: 50; */
-    font-size: 150%;
+    font-size: 50%;
     font-weight: bold;
 }
 
 header img {
     height: 100%;
+}
+
+.campoEscolha button{
+    width: 30%;
+    height: 45px;
+    font-weight: bold;
 }
 
 .tirarHiperlink{

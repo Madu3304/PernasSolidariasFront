@@ -21,49 +21,61 @@ const Evento = () =>{
       };
     }
     
-    return { valido: true };
+    return { valido: true }
   };
+
+  
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const resultado = validarInscricao(formData);
+    const resultado = validarInscricao(formData)
     if (!resultado.valido) {
-      toast.warn(resultado.mensagem); //cantinho da tela luizinho 
-      return;
+      toast.warn(resultado.mensagem)
+      return
     }
+  
+    // Aqui vai o envio pro back
+    fetch("http://localhost:3000/evento", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Cadeirante evento com sucesso!")
+        console.log("Resposta do back:", data)
+      })
+      .catch((err) => {
+        console.error("Erro ao evento cadeirante:", err)
+      })
+  }
 
-    //pro back
-    console.log("Dados enviados:", formData);
-  };
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
-  };
 
   return(
     <div className="divPrincipalEvento">
       <Header />
 
-      <form action="post" className="formulario">
+      <form onSubmit={handleSubmit} className="formulario">
         <label htmlFor="">Nome da Corrida:</label>
-        <input type="text" name="nomeCompleto" />
+        <input type="text" name="nomeCompleto" value={formData.nomeCompleto} onChange={handleChange} />
         <label htmlFor="">Distância:</label>
-        <input type="text" name="distancia"/>
+        <input type="text" name="distancia" value={formData.distancia} onChange={handleChange}/>
         <label htmlFor="">Data da Corrida:</label>
-        <input type="text" name="dataCorrida"/>
+        <input type="text" name="dataCorrida" value={formData.dataCorrida} onChange={handleChange}/>
         <input type="submit" value="Cadastrar" className="botaoCadastrar" />
       </form>
-
-    </div>
-    
-    
+    </div>    
   )
-
 }
 
 export default Evento;
