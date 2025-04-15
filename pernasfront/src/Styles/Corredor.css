@@ -77,7 +77,7 @@ header img {
     height: 40px;
     border-radius: 10px;
     padding-left: 5px;
-    background-color: #a8a7a7;  /* Cor do fundo dos inputs do formulário */
+    background-color: #e2e2e2; 
     font-size: 110%;
 }
 
@@ -102,7 +102,7 @@ header img {
 }
 
 .botaoCadastrarCorredor{
-    width: 30%;
+    width: 25%;
     height: 45px;
     font-weight: bold;
 }

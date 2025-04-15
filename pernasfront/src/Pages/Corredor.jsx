@@ -14,7 +14,7 @@ const Corredor = () =>{
   });
 
   const validarInscricao = (data) => {
-    if (!data.nome || !data.cpf) {
+    if (!data.nomeCompletoCorredor || !data.cpfCorredor) {
       return {
         valido: false,
         mensagem: "Por favor, preencha todos os campos obrigatórios."
@@ -25,7 +25,7 @@ const Corredor = () =>{
   };
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -33,33 +33,35 @@ const Corredor = () =>{
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const resultado = validarInscricao(formData);
+    e.preventDefault()
+  
+    const resultado = validarInscricao(formData)
     if (!resultado.valido) {
       toast.warn(resultado.mensagem)
       return
     }
-  }  
-
-
-  // Aqui vai o envio pro back
-  fetch("http://localhost:3000/corredor", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      toast.success("Cadeirante Corredor com sucesso!")
-      console.log("Resposta do back:", data)
+  
+    fetch("http://localhost:3000/corredor/corredor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
-    .catch((err) => {
-      console.error("Erro ao cadastrar Corredor:", err)
-    });
-
+      .then((res) => {
+        if (!res.ok) {
+          return res.text().then(text => { throw new Error(text) })
+        }
+        return res.json()
+      })
+      .then((data) => {
+        toast.success("Corredor cadastrado com sucesso!")
+        console.log("Resposta do back:", data);
+      })
+      .catch((err) => {
+        console.error("Erro ao cadastrar Corredor:", err.message)
+      })
+  }  
 
   return(
     <div className="divPrincipalCorredor">
@@ -71,11 +73,7 @@ const Corredor = () =>{
         <label htmlFor="">CPF:</label>
         <input type="text" name="cpfCorredor" value={formData.cpfCorredor} onChange={handleChange} />
         <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamCamisaCorredor" value={formData.tamCamisaCorredor || ""} onChange={handleChange} />
-        <label htmlFor="">Distância:</label>
-        <input type="text" name="distanciaCorredor" value={formData.distanciaCorredor || ""} onChange={handleChange} />
-        <label htmlFor="">Última Corrida:</label>/
-        <input type="text" name="ultCorridaCorredor" value={formData.ultCorridaCorredor || ""} onChange={handleChange} />
+        <input type="text" name="TamanhoBlusa" value={formData.TamanhoBlusa || ""} onChange={handleChange} />
         <input type="submit" value="Cadastrar" className="botaoCadastrarCorredor" />
       </form>
     </div>

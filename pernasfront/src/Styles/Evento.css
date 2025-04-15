@@ -66,7 +66,7 @@ header img {
 }
 
 .formulario{
-    padding-top: 10%;
+    padding-top: 5%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -92,8 +92,8 @@ header img {
 }
 
 .formulario label{
-    padding-top: 1%;
-    font-size: 150%;
+    /* padding-top: %; */
+    font-size: 130%;
     display: block;
     width: 33%;
     text-align: left;
@@ -116,8 +116,7 @@ header img {
 
 
 .botaoCadastrar{
-    width: 30%;
+    width: 25%;
     height: 45px;
     font-weight: bold;
-    /* padding-top: 1%; */
 }

@@ -9,12 +9,14 @@ import Header from "../Components/Header";
 const Evento = () =>{
 
   const [formData, setFormData] = useState({
-    nomeCompleto: "",
-    dataCorrida: ""
-  });
+    nomeEvento: "",
+    dataCorrida: "",
+    distancia: "",
+    localCorrida: ""
+  })
 
   const validarInscricao = (data) => {
-    if (!data.nomeCompleto || !data.dataCorrida ) {
+    if (!data.nomeEvento || !data.dataCorrida || !data.localCorrida ) {
       return {
         valido: false,
         mensagem: "Por favor, preencha todos os campos obrigatórios."
@@ -43,7 +45,7 @@ const Evento = () =>{
     }
   
     // Aqui vai o envio pro back
-    fetch("http://localhost:3000/evento", {
+    fetch("http://localhost:3000/evento/evento", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,11 +69,13 @@ const Evento = () =>{
 
       <form onSubmit={handleSubmit} className="formulario">
         <label htmlFor="">Nome da Corrida:</label>
-        <input type="text" name="nomeCompleto" value={formData.nomeCompleto} onChange={handleChange} />
+        <input type="text" name="nomeEvento" value={formData.nomeEvento} onChange={handleChange} />
         <label htmlFor="">Distância:</label>
-        <input type="text" name="distancia" value={formData.distancia} onChange={handleChange}/>
+        <input type="text" name="distancia" value={formData.distancia} onChange={handleChange} />
         <label htmlFor="">Data da Corrida:</label>
-        <input type="text" name="dataCorrida" value={formData.dataCorrida} onChange={handleChange}/>
+        <input type="text" name="dataCorrida" value={formData.dataCorrida} onChange={handleChange} />
+        <label htmlFor="">Local da Corrida:</label>
+        <input type="text" name="localCorrida" value={formData.localCorrida} onChange={handleChange} />
         <input type="submit" value="Cadastrar" className="botaoCadastrar" />
       </form>
     </div>    

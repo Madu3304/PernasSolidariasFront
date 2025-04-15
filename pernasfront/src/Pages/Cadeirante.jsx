@@ -9,15 +9,11 @@ const Cadeirantes = () =>{
 
   const [formData, setFormData] = useState({
     nomeCompletoCadeirante: "",
-    cpfCadeirante: "",
-    possuiCadeira: false
-  })
-
-  const [mostrarOpcoes, setMostrarOpcoes] = useState(false)
-
+    cpfCadeirante: ""
+   })
 
   const validarInscricao = (data) => {
-    if (!data.nomeCompletoCadeirant || !data.cpfCadeirante || !data.possuiCadeira) {
+    if (!data.nomeCompletoCadeirant || !data.cpfCadeirante) {
       return {
         valido: false,
         mensagem: "Por favor, preencha todos os campos obrigatórios."
@@ -27,15 +23,8 @@ const Cadeirantes = () =>{
     return { valido: true }
   }
 
-  //botao de marcar cadeira propria
-  const comSemCadeira = (opcao) => {
-    setFormData((prev) => ({
-      ...prev,
-      possuiCadeira: opcao === "Sim"
-    }))
-    setMostrarOpcoes(false);
-  }
-
+  const [situacao, setSituacao] = useState("")
+  const opcoes = ["Selecione", "Sim", "Não"]
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -46,29 +35,39 @@ const Cadeirantes = () =>{
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
+  
     const resultado = validarInscricao(formData)
     if (!resultado.valido) {
       toast.warn(resultado.mensagem)
       return
     }
   
+    const dadosParaEnvio = {
+      ...formData,
+      ComSemCadeira: situacao
+    }
+  
     // Aqui vai o envio pro back
-    fetch("http://localhost:3000/cadeirante", {
+    fetch("http://localhost:3000/cadeirante/cadeirante", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(dadosParaEnvio),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          return res.text().then(text => { throw new Error(text) });
+        }
+        return res.json();
+      })
       .then((data) => {
-        toast.success("Cadeirante cadastrado com sucesso!")
-        console.log("Resposta do back:", data)
+        toast.success("Cadeirante cadastrado com sucesso!");
+        console.log("Resposta do back:", data);
       })
       .catch((err) => {
-        console.error("Erro ao cadastrar cadeirante:", err)
+        console.error("Erro ao cadastrar cadeirante:", err.message);
       })
   }
 
@@ -82,25 +81,18 @@ const Cadeirantes = () =>{
         <label htmlFor="">CPF:</label>
         <input type="text" name="cpfCadeirante" value={formData.cpfCadeirante} onChange={handleChange}/>
         <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamCamisaCadeirante" value={formData.tamCamisaCadeirante || ""} onChange={handleChange} />
-        <label htmlFor="">Distância:</label>
-        <input type="text" name="distanciaCadeirante" value={formData.distanciaCadeirante || ""} onChange={handleChange} />
-        <label htmlFor="">Última Corrida:</label>
-        <input type="text" name="ultCorridaCadeirante" value={formData.ultCorridaCadeirante || ""} onChange={handleChange} />
-
-          <div className="checkbox-container-cadeirante">
-          <label>Possui cadeira própria?</label>
-          <button type="button" onClick={() => setMostrarOpcoes(!mostrarOpcoes)}>
-            Escolher
-          </button>
-
-          {mostrarOpcoes && (
-            <div className="campoEscolha">
-              <button type="button" onClick={() => comSemCadeira("Sim")}>Sim</button>
-              <button type="button" onClick={() => comSemCadeira("Não")}>Não</button>
-            </div>
-          )}
-        </div>
+        <input type="text" name="tamanhoBlusa" value={formData.tamanhoBlusa || ""} onChange={handleChange} />
+        
+    <div className="checkbox-container-cadeirante" >
+      <label htmlFor="situacao">Possui cadeira própria?</label>
+      <select name="ComSemCadeira" id="situacao" value={situacao} onChange={(e) => setSituacao(e.target.value)} >
+        {opcoes.map((opcao, index) => (
+          <option key={index} value={opcao === "Selecione" ? "" : opcao}>
+            {opcao} 
+          </option>
+        ))}
+      </select>
+    </div>
 
         <input type="submit" value="Cadastrar" className="botaoCadastrarCadeirante" onChange={handleChange} />
       </form>
