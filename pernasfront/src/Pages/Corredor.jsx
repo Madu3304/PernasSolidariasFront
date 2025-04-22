@@ -9,12 +9,12 @@ import Header from "../Components/Header";
 const Corredor = () =>{
 
   const [formData, setFormData] = useState({
-    nomeCompletoCorredor: "",
-    cpfCorredor: "",
+    nm_corredor: "",
+    cpf_corredor: "",
   });
 
   const validarInscricao = (data) => {
-    if (!data.nomeCompletoCorredor || !data.cpfCorredor) {
+    if (!data.nm_corredor || !data.cpf_corredor) {
       return {
         valido: false,
         mensagem: "Por favor, preencha todos os campos obrigatórios."
@@ -69,11 +69,21 @@ const Corredor = () =>{
 
       <form onSubmit={handleSubmit} className="formularioCorredor">
         <label htmlFor="">Nome Completo:</label>
-        <input type="text" name="nomeCompletoCorredor" value={formData.nomeCompletoCorredor} onChange={handleChange} />
+        <input type="text" name="nm_corredor" value={formData.nm_corredor} onChange={handleChange} />
         <label htmlFor="">CPF:</label>
-        <input type="text" name="cpfCorredor" value={formData.cpfCorredor} onChange={handleChange} />
-        <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="TamanhoBlusa" value={formData.TamanhoBlusa || ""} onChange={handleChange} />
+        <input type="text" name="cpf_corredor" value={formData.cpf_corredor} onChange={handleChange} />
+        {/* <label htmlFor="">Tamanho da Camisa:</label>
+        <input type="text" name="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange} /> */}
+        <label htmlFor="tamanho_blusa" id="label-tamanho-blusa">Tamanho da Camisa</label>
+        <select name="tamanho_blusa" id="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange}>
+          <option value="" selected disabled>Selecione</option>
+          <option value="PP">PP</option>
+          <option value="P">P</option>
+          <option value="M">M</option>
+          <option value="G">G</option>
+          <option value="GG">GG</option>
+          <option value="XGG">XGG</option>
+        </select>
         <input type="submit" value="Cadastrar" className="botaoCadastrarCorredor" />
       </form>
     </div>

@@ -105,16 +105,33 @@ header img {
 
 /* ver com o luiz */
 .checkbox-container-cadeirante{
-    display: flexbox;
+    text-align: center; /* centraliza conteúdo inline/inline-block */
+    width: 100%;
+    /* flex-direction: row;
+    text-align: center;
     justify-content: center;
     width: 100%;
     gap: 0.3%;
     font-size: 100%;
-    align-items: middle;
+    align-items: center; */
 }
+
+.checkbox-container-cadeirante label{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#label-tamanho-blusa{
+    text-align: center;
+}
+
 
 .botaoCadastrarCadeirante{
     width: 25%;
     height: 45px;
     font-weight: bold;
+    margin-top: 1%;
 }

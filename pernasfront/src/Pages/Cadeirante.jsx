@@ -80,20 +80,28 @@ const Cadeirantes = () =>{
         <input type="text" name="nomeCompletoCadeirante" value={formData.nomeCompletoCadeirante} onChange={handleChange} />
         <label htmlFor="">CPF:</label>
         <input type="text" name="cpfCadeirante" value={formData.cpfCadeirante} onChange={handleChange}/>
-        <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamanhoBlusa" value={formData.tamanhoBlusa || ""} onChange={handleChange} />
-        
-    <div className="checkbox-container-cadeirante" >
-      <label htmlFor="situacao">Possui cadeira própria?</label>
-      <select name="ComSemCadeira" id="situacao" value={situacao} onChange={(e) => setSituacao(e.target.value)} >
-        {opcoes.map((opcao, index) => (
-          <option key={index} value={opcao === "Selecione" ? "" : opcao}>
-            {opcao} 
-          </option>
-        ))}
-      </select>
-    </div>
-
+        <div className="checkbox-container-cadeirante">
+          <label htmlFor="" id="label-tamanho-blusa">Tamanho da Camisa</label>
+          <select name="tamanho_blusa" id="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange}>
+            <option value="" selected disabled>Selecione</option>
+            <option value="PP">PP</option>
+            <option value="P">P</option>
+            <option value="M">M</option>
+            <option value="G">G</option>
+            <option value="GG">GG</option>
+            <option value="XGG">XGG</option>
+          </select>
+        </div>
+        <div className="checkbox-container-cadeirante" id="checkbox-cadeirante">
+          <label htmlFor="situacao" id="situacao">Possui cadeira própria?</label>
+          <select name="ComSemCadeira" id="situacao" value={situacao} onChange={(e) => setSituacao(e.target.value)} >
+            {opcoes.map((opcao, index) => (
+              <option key={index} value={opcao === "Selecione" ? "" : opcao}>
+                {opcao} 
+              </option>
+            ))}
+          </select>
+        </div>
         <input type="submit" value="Cadastrar" className="botaoCadastrarCadeirante" onChange={handleChange} />
       </form>
     </div>

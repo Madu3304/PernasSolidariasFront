@@ -101,8 +101,13 @@ header img {
     border: none;
 }
 
+#label-tamanho-blusa{
+    text-align: center;
+}
+
 .botaoCadastrarCorredor{
     width: 25%;
     height: 45px;
     font-weight: bold;
+    margin-top: 1%;
 }
