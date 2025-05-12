@@ -43,20 +43,6 @@ table {
 }
 
 
-
-header{
-    width: 10%;
-    height: 70px;
-    background-color: #3AD690;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    /* word-spacing: 500px; */
-    /* gap: 50; */
-    font-size: 50%;
-    font-weight: bold;
-}
-
 header img {
     height: 100%;
 }
@@ -105,15 +91,32 @@ header img {
 
 /* ver com o luiz */
 .checkbox-container-cadeirante{
-    text-align: center; /* centraliza conteúdo inline/inline-block */
-    width: 100%;
-    /* flex-direction: row;
-    text-align: center;
+    display: flex;
+    width: 20%;
     justify-content: center;
-    width: 100%;
-    gap: 0.3%;
+    flex-direction: column;
     font-size: 100%;
-    align-items: center; */
+    align-items: middle;
+    margin-bottom: 1%;
+}
+
+.checkbox-container-cadeirante label{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.checkbox-container-cadeirante select{
+    display: flex;
+    width: 30%;
+    flex-direction: center;
+    justify-content:left;
+    align-items: center;
+}
+
+.situacao{
+    display: flex;
+    justify-content: center;
 }
 
 .checkbox-container-cadeirante label{
