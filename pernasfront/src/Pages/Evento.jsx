@@ -84,15 +84,51 @@ const Evento = () =>{
       <Header />
 
       <form onSubmit={handleSubmit} className="formulario">
-        <label htmlFor="">Nome da Corrida:</label>
-        <input type="text" name="nm_evento" value={formData.nm_evento} onChange={handleChange} />
-        <label htmlFor="">Distância:</label>
-        <input type="text" name="distancia" value={formData.distancia} onChange={handleChange} />
-        <label htmlFor="">Data da Corrida:</label>
-        <input type="text" name="dt_corrida" value={formData.dt_corrida} onChange={handleChange} />
-        <label htmlFor="">Local da Corrida:</label>
-        <input type="text" name="local_corrida" value={formData.local_corrida} onChange={handleChange} />
-        <input type="submit" value="Cadastrar" className="botaoCadastrar" />
+         <div className="formulario__campo">
+          <label htmlFor="nomeEvento">Nome da Corrida:</label>
+          <input
+            type="text"
+            id="nomeEvento"
+            name="nomeEvento"
+            value={formData.nomeEvento}
+            onChange={handleChange}
+            required 
+          />
+        </div>
+        <div className="formulario__campo">
+          <label htmlFor="distancia">Distância:</label>
+          <input
+            type="text"
+            id="distancia"
+            name="distancia"
+            value={formData.distancia}
+            onChange={handleChange}
+            required 
+          />
+        </div>
+        <div className="formulario__campo">
+          <label htmlFor="dataCorrida">Data da Corrida:</label>
+          <input
+            type="text" 
+            id="dataCorrida"
+            name="dataCorrida"
+            value={formData.dataCorrida}
+            onChange={handleChange}
+            required 
+          />
+        </div>
+        <div className="formulario__campo">
+          <label htmlFor="localCorrida">Local da Corrida:</label>
+          <input
+            type="text"
+            id="localCorrida"
+            name="localCorrida"
+            value={formData.localCorrida}
+            onChange={handleChange}
+            required 
+          />
+        </div>
+        <input type="submit" value="Cadastrar" className="formulario__botaoCadastrar" />
       </form>
     </div>    
   )

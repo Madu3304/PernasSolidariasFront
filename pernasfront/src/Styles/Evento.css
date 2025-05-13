@@ -18,105 +18,103 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Estilos do Componente Evento */
+.divPrincipalEvento {
+  padding-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formulario {
+  padding-top: 20px;
+  width: 100%;
+  max-width: 550px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; 
+}
+
+.formulario__campo {
+  margin-bottom: 20px;
+  width: 100%; 
+}
+
+.formulario__campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: left;
+}
+
+.formulario__campo input[type="text"],
+.formulario__campo input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease; 
+}
+
+.formulario__campo input[type="text"]:focus,
+.formulario__campo input[type="date"]:focus {
+  outline: none; 
+  border-color: #00ff6a; 
+  box-shadow: 0 0 0 2px rgba(1, 180, 82, 0.25); 
 }
 
 
-
-header{
-    width: 100%;
-    height: 70px;
-    background-color: #3AD690;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    /* word-spacing: 500px; */
-    /* gap: 50; */
-    font-size: 150%;
-    font-weight: bold;
+.formulario__botaoCadastrar {
+  background-color: #3AD690;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 270px;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
-header img {
-    height: 100%;
+.formulario__botaoCadastrar:hover {
+  background-color: #2ecc71;
 }
 
-.tirarHiperlink{
-    text-decoration: none;
+.tirarHiperlink {
+  text-decoration: none;
+  color: black;
 }
 
-.formulario{
-    padding-top: 1%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.formulario input[type="text"]{
-    width: 33%;
-    height: 40px;
-    border-radius: 10px;
-    padding-left: 5px;
-    background-color: #e2e2e2;
-    font-size: 110%;
-}
-
-.formulario input[type="submit"]{
-    background-color: #3AD690;
-    border-radius: 10px;
-    font-size: 150%;
-    margin-top: 1%;
-}
-
-.formulario label{
-    /* padding-top: %; */
-    font-size: 150%;
-    display: block;
-    width: 33%;
-    text-align: left;
-    margin-bottom: 5px;
-}
-
-.formulario input{
-    margin-bottom: 1%;
-    border: none;
-}
-
-.checkbox-container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 0.3%;
-    font-size: 130%;
-    align-items: middle;
-}
-
-
-.botaoCadastrar{
-    width: 25%;
-    height: 45px;
-    font-weight: bold;
+.tirarHiperlink:hover {
+  color: #ffff; 
 }
