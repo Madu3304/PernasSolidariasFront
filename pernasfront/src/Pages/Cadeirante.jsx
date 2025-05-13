@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom"
-import logo from "../assets/logo_sem fundo.png"
+// import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import { useState } from "react"
 import Header from "../Components/Header"
@@ -32,18 +31,7 @@ const Cadeirantes = () =>{
     return { valido: true };
   };
 
-  // const validarInscricao = (data) => {
-  //   if (!data.nomeCompletoCadeirante || !data.cpfCadeirante) {
-  //     return {
-  //       valido: false,
-  //       mensagem: "Por favor, preencha todos os campos obrigatórios."
-  //     };
-  //   }
-    
-  //   return { valido: true }
-  // }
-
-  const [situacao, setSituacao] = useState("")
+ const [situacao, setSituacao] = useState("")
   const opcoes = ["Selecione", "Sim", "Não"]
 
   const handleChange = (e) => {
@@ -100,13 +88,14 @@ const Cadeirantes = () =>{
       <Header />
 
       <form onSubmit={handleSubmit} className="formularioCadeirante">
-        <label htmlFor="">Nome Completo:</label>
-        <input type="text" name="nomeCompletoCadeirante" value={formData.nomeCompletoCadeirante} onChange={handleChange} />
-        <label htmlFor="">CPF:</label>
-        <input
-          type="text"
-          name="cpfCadeirante"
-          value={formData.cpfCadeirante}
+        <div className="formularioCadeirante__campo">
+          <label htmlFor="nomeCompletoCadeirante">Nome Completo:</label>
+            <input type="text" name="nomeCompletoCadeirante" value={formData.nomeCompletoCadeirante} onChange={handleChange} required/>
+        </div>
+
+        <div className="formularioCadeirante__campo">
+        <label htmlFor="cpfCadeirante">CPF:</label>
+        <input type="text" name="cpfCadeirante" value={formData.cpfCadeirante} 
           onChange={(e) => {
             let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for dígito
             if (value.length > 11) value = value.slice(0, 11);
@@ -121,38 +110,26 @@ const Cadeirantes = () =>{
 
             setFormData((prev) => ({ ...prev, cpfCadeirante: value }));
           }}
-          placeholder="000.000.000-00"
-        />
-        {/* <input type="text" name="cpfCadeirante" value={formData.cpfCadeirante} onChange={handleChange}/> */}
-        <label htmlFor="" id="label-tamanho-blusa">Tamanho da Camisa:</label>
-        <select name="tamanho_blusa" id="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange}>
-          <option value="" disabled>Selecione</option>
-          <option value="PP">PP</option>
-          <option value="P">P</option>
-          <option value="M">M</option>
-          <option value="G">G</option>
-          <option value="GG">GG</option>
-          <option value="XGG">XGG</option>
-        </select>
-        
-        <div className="checkbox-container-cadeirante">
+          placeholder="000.000.000-00" required/>
+        </div>
+
+
+        <div className="formularioCadeirante__campo">
           <label htmlFor="situacao">Possui cadeira própria?</label>
           <div className="situacao">
-            <select name="ComSemCadeira" id="situacao" value={situacao} onChange={(e) => setSituacao(e.target.value)} >
-              <option value="" disabled>Selecione</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-              {/* {opcoes.map((opcao, index) => (
+            <select name="ComSemCadeira" id="situacao" className="situacaoCadeirante" value={situacao} onChange={(e) => setSituacao(e.target.value)} >
+              {opcoes.map((opcao, index) => (
                 <option key={index} value={opcao === "Selecione" ? "" : opcao}>
                   {opcao}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
         </div>
-        <input type="submit" value="Cadastrar" className="botaoCadastrarCadeirante" onChange={handleChange} />
+         <input type="submit" value="Cadastrar" className="botaoCadastrarCadeirante" onChange={handleChange} />
       </form>
     </div>
+
   )
 }
 

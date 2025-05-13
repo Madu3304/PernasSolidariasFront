@@ -18,123 +18,118 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.divPrincipalCadeirante {
+  padding-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formularioCadeirante {
+  padding-top: 20px;
+  width: 100%;
+  max-width: 550px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; 
+}
+
+.formularioCadeirante__campo {
+  margin-bottom: 20px;
+  width: 100%; 
+}
+
+.formularioCadeirante__campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: left;
+}
+
+.formularioCadeirante__campo input[type="text"],
+.formularioCadeirante__campo input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease; 
+}
+
+.formularioCadeirante__campo input[type="text"]:focus,
+.formularioCadeirante__campo input[type="date"]:focus {
+  outline: none; 
+  border-color: #00ff6a; 
+  box-shadow: 0 0 0 2px rgba(1, 180, 82, 0.25); 
 }
 
 
-header img {
-    height: 100%;
+.botaoCadastrarCadeirante {
+  background-color: #3AD690;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 270px;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
-.tirarHiperlink{
-    text-decoration: none;
+.situacaoCadeirante {
+  background-color: #52c281;
+  color: white;
+  padding: 5px 6px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
-.formularioCadeirante{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.botaoCadastrarCadeirante:hover {
+  background-color: #2ecc71;
 }
 
-
-.formularioCadeirante input[type="text"]{
-    width: 33%;
-    height: 40px;
-    border-radius: 10px;
-    padding-left: 5px;
-    background-color: #e2e2e2;
-    font-size: 110%;
+.situacaoCadeirante {
+    background-color: #81f3b1;  
 }
 
-.formularioCadeirante input[type="submit"]{
-    background-color: #3AD690;
-    border-radius: 10px;
-    font-size: 150%;
+.tirarHiperlink {
+  text-decoration: none;
+  color: black;
 }
 
-.formularioCadeirante label{
-    padding-top: 1%;
-    font-size: 150%;
-    display: block;
-    width: 33%;
-    text-align: left;
-    margin-bottom: 5px;
-}
-
-.formularioCadeirante input{
-    margin-bottom: 1%;
-    border: none;
-}
-
-/* ver com o luiz */
-.checkbox-container-cadeirante{
-    display: flex;
-    width: 20%;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 100%;
-    align-items: middle;
-    margin-bottom: 1%;
-}
-
-.checkbox-container-cadeirante label{
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-
-.checkbox-container-cadeirante select{
-    display: flex;
-    width: 30%;
-    flex-direction: center;
-    justify-content:left;
-    align-items: center;
-}
-
-.situacao{
-    display: flex;
-    justify-content: center;
-}
-
-/* .checkbox-container-cadeirante label{
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-#label-tamanho-blusa{
-    text-align: center;
-}
-
-
-.botaoCadastrarCadeirante{
-    width: 25%;
-    height: 45px;
-    font-weight: bold;
-    margin-top: 1%;
+.tirarHiperlink:hover {
+  color: #ffff; 
 }
