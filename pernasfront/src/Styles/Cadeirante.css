@@ -119,13 +119,13 @@ header img {
     justify-content: center;
 }
 
-.checkbox-container-cadeirante label{
+/* .checkbox-container-cadeirante label{
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 #label-tamanho-blusa{
     text-align: center;

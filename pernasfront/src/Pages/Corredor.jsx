@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import InputMask from 'react-input-mask';
 import "../Styles/Corredor.css"
 import logo from "../assets/logo_sem fundo.png"
 import { toast } from "react-toastify";
@@ -20,9 +21,19 @@ const Corredor = () =>{
         mensagem: "Por favor, preencha todos os campos obrigatórios."
       };
     }
-    
+
+    // Regex para validar CPF com pontuação
+    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    if (!cpfRegex.test(data.cpf_corredor)) {
+      return {
+        valido: false,
+        mensagem: "CPF inválido. Use o formato XXX.XXX.XXX-XX"
+      };
+    }
+
     return { valido: true };
   };
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -70,8 +81,28 @@ const Corredor = () =>{
       <form onSubmit={handleSubmit} className="formularioCorredor">
         <label htmlFor="">Nome Completo:</label>
         <input type="text" name="nm_corredor" value={formData.nm_corredor} onChange={handleChange} />
-        <label htmlFor="">CPF:</label>
-        <input type="text" name="cpf_corredor" value={formData.cpf_corredor} onChange={handleChange} />
+        <label htmlFor="cpf">CPF:</label>
+        <input
+          type="text"
+          name="cpf_corredor"
+          value={formData.cpf_corredor}
+          onChange={(e) => {
+            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for dígito
+            if (value.length > 11) value = value.slice(0, 11);
+
+            // Aplica a máscara manualmente
+            if (value.length > 9)
+              value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+            else if (value.length > 6)
+              value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+            else if (value.length > 3)
+              value = value.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+
+            setFormData((prev) => ({ ...prev, cpf_corredor: value }));
+          }}
+          placeholder="000.000.000-00"
+        />
+        {/* <input type="text" name="cpf_corredor" value={formData.cpf_corredor} onChange={handleChange} /> */}
         {/* <label htmlFor="">Tamanho da Camisa:</label>
         <input type="text" name="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange} /> */}
         <label htmlFor="tamanho_blusa" id="label-tamanho-blusa">Tamanho da Camisa</label>

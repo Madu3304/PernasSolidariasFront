@@ -77,7 +77,7 @@ const Grafico = () => {
         <h3>Eventos com mais inscrições</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={dados.eventos.map(item => ({
-            nome: item.Evento.nomeEvento,
+            nome: item.Evento.nm_evento,
             quantidade: item.quantidade
           }))}>
             <CartesianGrid strokeDasharray="3 3" />

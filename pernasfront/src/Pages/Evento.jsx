@@ -9,14 +9,14 @@ import Header from "../Components/Header";
 const Evento = () =>{
 
   const [formData, setFormData] = useState({
-    nomeEvento: "",
-    dataCorrida: "",
+    nm_evento: "",
+    dt_corrida: "",
     distancia: "",
-    localCorrida: ""
+    local_corrida: ""
   })
 
   const validarInscricao = (data) => {
-    if (!data.nomeEvento || !data.dataCorrida || !data.localCorrida ) {
+    if (!data.nm_evento || !data.dt_corrida || !data.local_corrida ) {
       return {
         valido: false,
         mensagem: "Por favor, preencha todos os campos obrigatórios."
@@ -43,6 +43,20 @@ const Evento = () =>{
       toast.warn(resultado.mensagem)
       return
     }
+
+    const dataRegex = /^(\d{2})-(\d{2})-(\d{4})$/;
+    const match = formData.dt_corrida.match(dataRegex);
+    if (!match) {
+      toast.warn("A data deve estar no formato DD-MM-YYYY");
+      return;
+    }
+
+    const dataFormatada = `${match[3]}-${match[2]}-${match[1]}`;
+
+    const dadosParaEnvio = {
+      ...formData,
+      dt_corrida: dataFormatada
+    };
   
     // Aqui vai o envio pro back
     fetch("http://localhost:3000/evento/evento", {
@@ -50,11 +64,13 @@ const Evento = () =>{
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(dadosParaEnvio),
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Cadeirante evento com sucesso!")
+        toast.success("Evento cadastrado com sucesso!")
+        // setFormData('')
+        // formData.nm_evento = ''
         console.log("Resposta do back:", data)
       })
       .catch((err) => {
@@ -69,13 +85,13 @@ const Evento = () =>{
 
       <form onSubmit={handleSubmit} className="formulario">
         <label htmlFor="">Nome da Corrida:</label>
-        <input type="text" name="nomeEvento" value={formData.nomeEvento} onChange={handleChange} />
+        <input type="text" name="nm_evento" value={formData.nm_evento} onChange={handleChange} />
         <label htmlFor="">Distância:</label>
         <input type="text" name="distancia" value={formData.distancia} onChange={handleChange} />
         <label htmlFor="">Data da Corrida:</label>
-        <input type="text" name="dataCorrida" value={formData.dataCorrida} onChange={handleChange} />
+        <input type="text" name="dt_corrida" value={formData.dt_corrida} onChange={handleChange} />
         <label htmlFor="">Local da Corrida:</label>
-        <input type="text" name="localCorrida" value={formData.localCorrida} onChange={handleChange} />
+        <input type="text" name="local_corrida" value={formData.local_corrida} onChange={handleChange} />
         <input type="submit" value="Cadastrar" className="botaoCadastrar" />
       </form>
     </div>    
