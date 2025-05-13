@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import InputMask from 'react-input-mask';
 import "../Styles/Corredor.css"
-import logo from "../assets/logo_sem fundo.png"
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Header from "../Components/Header";
@@ -21,6 +20,9 @@ const Corredor = () =>{
         mensagem: "Por favor, preencha todos os campos obrigatórios."
       };
     }
+
+    const [situacao, setSituacao] = useState("")
+    const opcoes = ["Selecione", "PP","P", "M", "G", "GG"]
 
     // Regex para validar CPF com pontuação
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
@@ -79,13 +81,14 @@ const Corredor = () =>{
       <Header />
 
       <form onSubmit={handleSubmit} className="formularioCorredor">
-        <label htmlFor="">Nome Completo:</label>
-        <input type="text" name="nm_corredor" value={formData.nm_corredor} onChange={handleChange} />
+        <div className="formularioCorredor__campo">
+        <label htmlFor="nomeCompletoCorredor">Nome Completo:</label>
+        <input type="text" id="nomeCompletoCorredor" name="nomeCompletoCorredor" value={formData.nomeCompletoCorredor} onChange={handleChange} required />
+        </div>
+
+        <div className="formularioCorredor__campo">
         <label htmlFor="cpf">CPF:</label>
-        <input
-          type="text"
-          name="cpf_corredor"
-          value={formData.cpf_corredor}
+        <input type="text" name="cpf_corredor" value={formData.cpf_corredor}
           onChange={(e) => {
             let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for dígito
             if (value.length > 11) value = value.slice(0, 11);
@@ -100,25 +103,22 @@ const Corredor = () =>{
 
             setFormData((prev) => ({ ...prev, cpf_corredor: value }));
           }}
-          placeholder="000.000.000-00"
-        />
-        {/* <input type="text" name="cpf_corredor" value={formData.cpf_corredor} onChange={handleChange} /> */}
-        {/* <label htmlFor="">Tamanho da Camisa:</label>
-        <input type="text" name="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange} /> */}
-        <label htmlFor="tamanho_blusa" id="label-tamanho-blusa">Tamanho da Camisa</label>
-        <select name="tamanho_blusa" id="tamanho_blusa" value={formData.tamanho_blusa || ""} onChange={handleChange}>
-          <option value="" selected disabled>Selecione</option>
-          <option value="PP">PP</option>
-          <option value="P">P</option>
-          <option value="M">M</option>
-          <option value="G">G</option>
-          <option value="GG">GG</option>
-          <option value="XGG">XGG</option>
+          placeholder="000.000.000-00"/>
+          </div>
+
+      <div className="formularioCorredor__campo" >
+        <label htmlFor="situacao">Tamanho da Camisa:</label>
+          <select name="ComSemCadeira" id="situacao" className="situacaoCorredor" value={situacao} onChange={(e) => setSituacao(e.target.value)} >
+            {opcoes.map((opcao, index) => (
+              <option key={index} value={opcao === "Selecione" ? "" : opcao} >
+                {opcao} 
+              </option>
+          ))}
         </select>
+        </div>
         <input type="submit" value="Cadastrar" className="botaoCadastrarCorredor" />
       </form>
     </div>
-
   )
 }
 
