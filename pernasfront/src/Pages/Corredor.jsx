@@ -5,33 +5,34 @@ import { useState } from "react";
 import Header from "../Components/Header";
 
 const Corredor = () => {
-  const [formData, setFormData] = useState({
+ const [formData, setFormData] = useState({
     nm_corredor: "",
     cpf_corredor: "",
-    tamanho_camisa: "",
-  });
+    tamanho_blusa: "",
+});
 
   const [situacao, setSituacao] = useState("");
   const opcoes = ["Selecione", "PP", "P", "M", "G", "GG"];
 
-  const validarInscricao = (data) => {
-    if (!data.nm_corredor || !data.cpf_corredor || !data.tamanho_camisa) {
-      return {
-        valido: false,
-        mensagem: "Por favor, preencha todos os campos obrigatórios.",
-      };
-    }
+const validarInscricao = (data) => {
+  if (!data.nm_corredor || !data.cpf_corredor || !data.tamanho_blusa) {
+    return {
+      valido: false,
+      mensagem: "Por favor, preencha todos os campos obrigatórios.",
+    };
+  }
 
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-    if (!cpfRegex.test(data.cpf_corredor)) {
-      return {
-        valido: false,
-        mensagem: "CPF inválido. Use o formato XXX.XXX.XXX-XX",
-      };
-    }
+  const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+  if (!cpfRegex.test(data.cpf_corredor)) {
+    return {
+      valido: false,
+      mensagem: "CPF inválido. Use o formato XXX.XXX.XXX-XX",
+    };
+  }
 
-    return { valido: true };
-  };
+  return { valido: true };
+};
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,8 +46,9 @@ const Corredor = () => {
     e.preventDefault();
 
     const dataParaEnviar = {
-      ...formData,
-      tamanho_camisa: situacao,
+      nm_corredor: formData.nm_corredor,
+      cpf_corredor: formData.cpf_corredor,
+      tamanho_blusa: situacao, 
     };
 
     const resultado = validarInscricao(dataParaEnviar);
@@ -54,6 +56,7 @@ const Corredor = () => {
       toast.warn(resultado.mensagem);
       return;
     }
+
 
     fetch("http://localhost:3000/corredor/corredor", {
       method: "POST",
@@ -73,11 +76,10 @@ const Corredor = () => {
       .then((data) => {
         toast.success("Corredor cadastrado com sucesso!");
         console.log("Resposta do back:", data);
-
         setFormData({
           nm_corredor: "",
           cpf_corredor: "",
-          tamanho_camisa: "",
+          tamanho_blusa: "",
         });
         setSituacao("");
       })
@@ -132,10 +134,10 @@ const Corredor = () => {
         </div>
 
         <div className="formularioCorredor__campo">
-          <label htmlFor="tamanho_camisa">Tamanho da Camisa:</label>
+          <label htmlFor="tamanho_blusa">Tamanho da Camisa:</label>
           <select
-            name="tamanho_camisa"
-            id="tamanho_camisa"
+            name="tamanho_blusa"
+            id="tamanho_blusa"
             className="situacaoCorredor"
             value={situacao}
             onChange={(e) => setSituacao(e.target.value)}
