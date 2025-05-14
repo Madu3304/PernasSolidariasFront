@@ -24,7 +24,8 @@ const Header = () => {
             <Link to="/evento" className="header__link">Evento</Link>
           </li>
           <li className="header__item">
-            <a href="#" className="header__link">Gráficos</a>
+            <Link to="/graficos" className="header__link">Gráficos</Link>
+            {/* <a href="#" className="header__link">Gráficos</a> */}
           </li>
           <li className="header__item">
             <a href="#" className="header__link">Membros</a>

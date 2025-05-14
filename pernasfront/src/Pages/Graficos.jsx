@@ -4,93 +4,54 @@ import logo from "../assets/logo_sem fundo.png"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import React from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import Header from "../Components/Header";
 
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from "recharts";
+// const data = [
+//   { name: 'Jan', valor: 30 },
+//   { name: 'Fev', valor: 45 },
+//   { name: 'Mar', valor: 28 },
+//   { name: 'Abr', valor: 60 },
+// ];
 
 const Grafico = () => {
-  const [dados, setDados] = useState({ corredores: [], cadeirantes: [], eventos: [] });
+
+  const [dados, setDados] = useState([]);
+  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    const buscarDados = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/api/grafico");
-        setDados(res.data);
-      } catch (err) {
-        console.error("Erro ao buscar dados:", err);
-      }
-    };
-
-    buscarDados();
+    axios.get('http://localhost:3000/Relatorio/grafico-cadeirantes')
+      .then(response => {
+        const dadosFormatados = response.data.map(item => ({
+          name: item.nome,
+          valor: item.qtd
+        }));
+        setDados(dadosFormatados);
+        setCarregando(false);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados do gráfico:', error);
+        setCarregando(false);
+      });
   }, []);
 
   return (
-    <div>
-       <div className="divPrincipalGraficos">
-      <header>
-        <img src={logo} alt="Logo Pernas Solidárias" />
-        <Link to="/corredor" className="tirarHiperlink">Corredores</Link>
-        <Link to="/cadeirante" className="tirarHiperlink">Cadeirantes</Link>
-        <a>Relatórios</a>
-        <Link to="/evento" className="tirarHiperlink">Evento</Link>
-        <a>Gráficos</a>
-        <a>Membros</a>
-      </header>
-
-      <div className="container-graficos">
-      <div className="grafico">
-        <h3>Corredores que mais participaram</h3>
+    <div className="tela">
+      <Header/>
+      <div className="p-6">
+        <h2 className="text-2xl font-bold mb-4">Cadeirantes que mais participaram de corridas</h2>
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={dados.corredores.map(item => ({
-            nome: item.Corredor.nomeCorredor,
-            quantidade: item.quantidade
-          }))}>
+          <LineChart data={dados}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="nome" />
+            <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="quantidade" fill="#00CED1" />
-          </BarChart>
+            <Line type="monotone" dataKey="valor" stroke="#8884d8" activeDot={{ r: 8 }} />
+          </LineChart>
         </ResponsiveContainer>
       </div>
-
-      <div className="grafico">
-        <h3>Cadeirantes que mais participaram</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={dados.cadeirantes.map(item => ({
-            nome: item.Cadeirante.nomeCadeirante,
-            quantidade: item.quantidade
-          }))}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="nome" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="quantidade" fill="#00CED1" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
-      <div className="grafico">
-        <h3>Eventos com mais inscrições</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={dados.eventos.map(item => ({
-            nome: item.Evento.nm_evento,
-            quantidade: item.quantidade
-          }))}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="nome" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="quantidade" fill="#00CED1" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
-    </div>
     </div>
   );
 };
