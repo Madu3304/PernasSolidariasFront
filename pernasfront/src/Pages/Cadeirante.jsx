@@ -113,6 +113,27 @@ const Cadeirantes = () =>{
           placeholder="000.000.000-00" required/>
         </div>
 
+        <div className="formularioCorredor__campo">
+          <label htmlFor="tamanho_blusa">Tamanho da Camisa:</label>
+          <select
+            name="tamanho_blusa"
+            id="tamanho_blusa"
+            className="situacaoCorredor"
+            value={formData.tamanho_blusa}
+            onChange={handleChange}
+            required
+          >
+            {opcoes.map((opcao, index) => (
+              <option
+                key={index}
+                value={opcao === "Selecione" ? "" : opcao}
+                disabled={opcao === "Selecione"}
+              >
+                {opcao}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="formularioCadeirante__campo">
           <label htmlFor="situacao">Possui cadeira própria?</label>
