@@ -85,13 +85,13 @@ table {
 .formularioCadeirante__campo input[type="text"]:focus,
 .formularioCadeirante__campo input[type="date"]:focus {
   outline: none; 
-  border-color: #00ff6a; 
+  border-color: #2ecc71; 
   box-shadow: 0 0 0 2px rgba(1, 180, 82, 0.25); 
 }
 
 
 .botaoCadastrarCadeirante {
-  background-color: #00ff6a;
+  background-color: #2ecc71;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -106,7 +106,7 @@ table {
 }
 
 .situacaoCadeirante {
-  background-color: #00ff6a;
+  background-color: #2ecc71;
   color: white;
   padding: 5px 6px;
   border: none;
@@ -122,7 +122,7 @@ table {
 }
 
 .situacaoCadeirante {
-    background-color: #00ff6a;  
+    background-color: #2ecc71;  
 }
 
 .tirarHiperlink {
