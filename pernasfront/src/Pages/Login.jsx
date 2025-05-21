@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="App">
-      <div className="header">
+      <div className="header_login">
       <img src={logo2} alt=""  className="img"/>
         <h1 className="h1">Pernas  </h1>
         <h2 className="h2">Solidarias |</h2>
@@ -48,7 +48,7 @@ const Login = () => {
             <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <Link to="/corredor"><button>Entrar</button></Link>
+        <Link className="botaoLogar" to="/corredor"><button>Entrar</button></Link>
 
         <div className="signup-link">
             <p>

@@ -1,166 +1,216 @@
-/* * {
+
+* {
     margin: 0;
     padding: 0;
-    font-family: Helvetica;
-    box-sizing: border-box;
-    text-shadow: #000 1px 1px;
-    font-family: Helvetica;
-  } */
-  
-*{
-    margin: 0;
-    padding: 0;
-    font-family: Helvetica;
+    font-family: Helvetica, Arial, sans-serif;
     box-sizing: border-box;
 }
+
 .App {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #3ad690;
-    
+    background-color: #2ecc71;
 }
 
-.header {
+.header_login {
     width: 100%;
-    height: 40px;
+    height: 60px;
     background-color: #fff;
     display: flex;
     align-items: center;
-    position: fixed; 
+    padding: 0 20px;
+    gap: 10px;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    padding-left: 10px;
 }
 
-
-.header .h1 {
-    color: #7fd493;
-    font-size: 25px;
-    margin-right: 6px;
+.header_login .img {
+    height: 100%;
 }
 
-.header .h2 {
+.header_login .text-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header_login .h1 {
+    color: #3AD690;
+    font-size: 190%;
+    font-weight: bold;
+}
+
+.header_login .h2 {
     color: #6ce8ef;
-    margin-right: 5px;
+    font-size: 190%;
 }
 
-.header .h3 {
-    color: #7fd493;
+.header_login .h3 {
+    color: #3AD690;
+    font-size: 190%;
 }
 
-.header .img{
-    height: 50px;
-    margin-right: 10px;
-}
 
 .container {
-    width: 450px;
-    height: 445px;
+    width: 100%;
+    max-width: 420px;
     background-color: #fff;
-    border: -5px #fff;
-    padding: 40px;
-    border-radius: 10px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    margin-top: 80px;
 }
 
 .container img {
-  display: flex;
-  justify-content: center;  
-  position: relative;
-  right: -85px;
-  top: 50%;
-  height: 18vh; 
+    display: block;
+    margin: 0 auto;
+    height: 80px;
+    margin-bottom: 20px;
 }
 
 .container .input-field {
     position: relative;
     width: 100%;
-    height: 50px;
-    margin: 25px auto;
+    margin-bottom: 20px;
 }
 
-.input-field {
-    width: 90%;
-    height: 90%;
-    background-color: #e2e2e2;
+.input-field input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.input-field input:focus {
     outline: none;
-    border-radius: 40px;
-    font-size: 19px;
-    color: #e2e2e2;
-    padding: 9px 9px;
+    border-color: #3AD690;
+    box-shadow: 0 0 0 2px rgba(58, 214, 144, 0.2);
 }
 
-.email {
-    background-color: #e2e2e2;
-    border: none;
-    outline: none;
-}
-
-.password {
-    background-color: #e2e2e2;
-    border: none;
-    outline: none;
-}
-
-.input-field input::placeholder{
-    color: rgb(58, 54, 54);
+.input-field input::placeholder {
+    color: #888;
 }
 
 .input-field .icon {
-    position: relative;
-    right: -150px;
+    position: absolute;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 21px;
-    color: black;
+    font-size: 18px;
+    color: #3AD690;
 }
 
 .container .recall-forget {
     display: flex;
     justify-content: space-between;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .recall-forget label {
-    color: blue;
+    cursor: pointer;
 }
 
-.recall-forget input{
-    margin-right: 5px;
-}
-
-.recall-forget a .signup-link p a {
-    color: #6f736e;
+.recall-forget a {
+    color: #3AD690;
     text-decoration: none;
 }
 
-.recall-forget a:hover .signup-link p a {
+.recall-forget a:hover {
     text-decoration: underline;
 }
 
+/* Botão */
 .container button {
     width: 100%;
-    height: 50px;
-    background-color: #e2e2e2;
+    background-color: #3AD690;
+    color: white;
+    padding: 12px;
     border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px;
-    cursor: pointer;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: 600;
-    text-shadow: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+.container button:hover {
+    background-color: #2ecc71;
+}
+
+/* Cadastro */
 .container .signup-link {
-    font-size: 15px;
     text-align: center;
-    margin: 20px 0 10px;
+    margin-top: 15px;
+    font-size: 14px;
 }
 
 .signup-link p a {
-    color: blue;
+    color: #3AD690;
+    text-decoration: none;
+}
+
+.signup-link p a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 25px;
+        margin: 100px 20px 20px 20px;
+    }
+
+    .header_login {
+        padding: 0 15px;
+        height: 60px;
+    }
+
+    .header_login .img {
+        height: 30px;
+    }
+
+    .header_login .h1 {
+        font-size: 18px;
+    }
+
+    .header_login .h2,
+    .header_login .h3 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        margin: 100px 15px 15px 15px;
+    }
+
+    .header_login {
+        flex-wrap: wrap;
+        gap: 8px;
+        height: auto;
+        padding: 10px 15px;
+    }
+
+    .header_login .text-group {
+        flex-wrap: wrap;
+    }
+
+    .header_login .h1 {
+        font-size: 16px;
+    }
+
+    .header_login .h2,
+    .header_login .h3 {
+        font-size: 14px;
+    }
 }
