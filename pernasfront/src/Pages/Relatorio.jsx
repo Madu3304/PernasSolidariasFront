@@ -27,6 +27,23 @@ const Relatorio = () => {
         setMenuOpen(menuOpen === userId ? null : userId);
     };
 
+        // Aqui vai o envio pro back
+        fetch("http://localhost:3000/relatorios/listarRelatorios", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dadosRecebidos),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("Lista atualiada")
+            // setFormData('')
+            // formData.nm_evento = ''
+            console.log("Resposta do back:", data)
+          })
+         
+
     return (
         <div className="user-list-container">
             <Header />
