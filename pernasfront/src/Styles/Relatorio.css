@@ -1,0 +1,152 @@
+
+
+.user-list-container {
+    padding: 10%;
+    background-color: #f0f2f5; 
+    min-height: calc(100vh - 60px); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+    width: 85%;
+    padding: 20px;
+    color: #333;
+    font-size: 37px;
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    align-items: center; 
+}
+
+.dropdownMenu {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+}
+
+.icon {
+    font-size: 18px;
+    color: #333;
+}
+
+.ButaoCoisas {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ButaoCoisas:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+}
+
+.table-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    overflow-x: auto; 
+    max-width: 900px;
+    width: 100%;
+}
+
+/* Estilo da tabela */
+.user-table {
+    width: 100%;
+    border-collapse: collapse; 
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Cabeçalho da tabela */
+.user-table th {
+    padding: 15px 20px;
+    text-align: left;
+    background-color: #f8f8f8;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap; 
+}
+
+/* Células da tabela */
+.user-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #efefef;
+    vertical-align: middle;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.user-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.actions-cell {
+    white-space: nowrap;
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.message {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .user-table thead {
+        display: none; 
+    }
+
+    .user-table, .user-table tbody, .user-table tr, .user-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .user-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .user-table td {
+        text-align: right;
+        padding-left: 50%; 
+        position: relative;
+        border: none; 
+    }
+
+    .user-table td::before {
+        content: attr(data-label); 
+        /* position: absolute; */
+        left: 20px;
+        width: calc(50% - 30px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .actions-cell {
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .dropdownMenu {
+        justify-content: center;
+    }
+}

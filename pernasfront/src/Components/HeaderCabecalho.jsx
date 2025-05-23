@@ -22,7 +22,7 @@ const headerCabecalho = () => {
             <Link to="/cadeirante" className="header__link" activeClassName="active">Cadeirantes</Link>
           </li>
           <li className="header__item">
-            <a href="#" className="header__link" activeClassName="active">Relatórios</a>
+            <a href="/relatorio" className="header__link" activeClassName="active">Relatórios</a>
           </li>
           <li className="header__item">
             <Link to="/evento" className="header__link" activeClassName="active">Evento</Link>
@@ -30,9 +30,6 @@ const headerCabecalho = () => {
           <li className="header__item">
             <Link to="/graficos" className="header__link" activeClassName="active">Gráficos</Link>
             {/* <a href="#" className="header__link">Gráficos</a> */}
-          </li>
-          <li className="header__item">
-            <a href="#" className="header__link">Membros</a>
           </li>
         </ul>
       </nav>
