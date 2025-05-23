@@ -6,7 +6,7 @@ import axios from "axios";
 
 import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import Header from "../Components/Header";
+import Header from "../Components/HeaderCabecalho";
 
 // const data = [
 //   { name: 'Jan', valor: 30 },
@@ -56,4 +56,4 @@ const Grafico = () => {
   );
 };
 
-export { Grafico }
+export default Grafico

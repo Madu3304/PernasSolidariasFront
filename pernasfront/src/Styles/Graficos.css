@@ -1,23 +1,20 @@
 
 
-header{
+.HeaderGrafico{
     width: 100%;
     height: 70px;
     background-color: #3AD690;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    /* word-spacing: 500px; */
-    /* gap: 50; */
     font-size: 150%;
     font-weight: bold;
 }
 
-header img {
+.HeaderGrafico img {
     height: 100%;
 }
 
-/* Estilo principal da página */
 .divPrincipalGraficos {
     display: flex;
     flex-direction: column;
@@ -26,8 +23,8 @@ header img {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  /* Estilo do header */
-  header {
+
+  .HeaderGrafico {
     background-color: #ffffff;
     display: flex;
     align-items: center;
@@ -37,12 +34,12 @@ header img {
     gap: 1rem;
   }
   
-  header img {
+  .HeaderGrafico img {
     height: 60px;
     margin-right: auto;
   }
   
-  header a {
+  .HeaderGrafico a {
     margin: 0 10px;
     text-decoration: none;
     color: #333;
@@ -50,11 +47,11 @@ header img {
     transition: color 0.3s ease;
   }
   
-  header a:hover {
+  .HeaderGrafico a:hover {
     color: #0056b3;
   }
   
-  /* Estilo do container do gráfico */
+
   .divPrincipalGraficos > div {
     flex-grow: 1;
     padding: 2rem;
@@ -79,12 +76,12 @@ header img {
   
  
   @media (max-width: 768px) {
-    header {
+    .HeaderGrafico {
       flex-direction: column;
       align-items: flex-start;
     }
   
-    header img {
+    .HeaderGrafico img {
       margin-bottom: 1rem;
     }
   

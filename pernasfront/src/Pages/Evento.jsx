@@ -3,7 +3,7 @@ import "../Styles/Evento.css"
 import logo from "../assets/logo_sem fundo.png"
 import { toast } from "react-toastify";
 import { useState } from "react";
-import Header from "../Components/Header";
+import Header from "../Components/HeaderCabecalho";
 
 
 const Evento = () =>{

@@ -55,10 +55,8 @@ const Login = () => {
                 Não tem conta? <a href="#">Cadastre-se</a>
             </p>
         </div>
-
-
       </form>
-    </div>
+      </div>
     </div>
   )
 }

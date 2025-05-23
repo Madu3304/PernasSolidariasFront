@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../Styles/Corredor.css";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import Header from "../Components/Header";
+import Header from "../Components/HeaderCabecalho";
 
 const Corredor = () => {
  const [formData, setFormData] = useState({

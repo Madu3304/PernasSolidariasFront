@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import { useState } from "react"
-import Header from "../Components/Header"
+import Header from "../Components/HeaderCabecalho"
 import "../Styles/Cadeirante.css"
 
 const Cadeirantes = () =>{

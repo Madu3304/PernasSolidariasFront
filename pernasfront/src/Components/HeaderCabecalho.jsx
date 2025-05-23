@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import logo from "../assets/logo_sem fundo.png";
 import logo from "../assets/logo_sfdois.png";
-import '../Components/Header.css'; 
+import '../Components/HeaderCabecalho.css'; 
 
-const Header = () => {
+const headerCabecalho = () => {
   return (
-    <header className="header">
-      <div className="header__logo">
-        <Link to="/" className="header__logo-link">
-          {/* <img src={logo} alt="Pernas Solidárias" className="header__logo" /> */}
-        </Link>
-      </div>
+    <header className="headerCabecalho">
 
       <nav className="header__nav">
+        <div className="header__logo">
+          <Link to="/" className="header__logo-link">
+            <img src={logo} alt="Pernas Solidárias" className="headerlogo" />
+          </Link>
+        </div>
         <ul className="header__list">
           <li className="header__item">
             <Link to="/corredor" className="header__link" activeClassName="active">Corredores</Link>
@@ -40,4 +40,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default headerCabecalho;
