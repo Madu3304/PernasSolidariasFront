@@ -89,8 +89,8 @@ const Evento = () =>{
           <input
             type="text"
             id="nomeEvento"
-            name="nomeEvento"
-            value={formData.nomeEvento}
+            name="nm_evento"
+            value={formData.nm_evento}
             onChange={handleChange}
             required 
           />
@@ -111,8 +111,8 @@ const Evento = () =>{
           <input
             type="text" 
             id="dataCorrida"
-            name="dataCorrida"
-            value={formData.dataCorrida}
+            name="dt_corrida"
+            value={formData.dt_corrida}
             onChange={handleChange}
             required 
           />
@@ -122,8 +122,8 @@ const Evento = () =>{
           <input
             type="text"
             id="localCorrida"
-            name="localCorrida"
-            value={formData.localCorrida}
+            name="local_corrida"
+            value={formData.local_corrida}
             onChange={handleChange}
             required 
           />

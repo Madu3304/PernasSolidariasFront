@@ -34,10 +34,10 @@
     gap: 1rem;
   }
   
-  .HeaderGrafico img {
+  /* .HeaderGrafico img {
     height: 60px;
     margin-right: auto;
-  }
+  } */
   
   .HeaderGrafico a {
     margin: 0 10px;
