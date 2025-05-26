@@ -92,8 +92,8 @@ const Relatorio = () => {
                         <tbody>
                             {users.map(user => (
                                 <tr key={user.id}>
-                                    <td>{user.Corredor}</td>
-                                    <td>{user.Cadeirante}</td>
+                                    <td>{user.corredor?.nomeCorredor}</td>
+                                    <td>{user.cadeirante?.nomeCadeirante}</td>
                                     <td className="actions-cell">
                                         <div className="dropdownMenu">
                                             <button onClick={() => handleEdit(user.id)} className="ButaoCoisas">
