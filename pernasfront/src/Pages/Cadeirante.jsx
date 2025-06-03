@@ -57,7 +57,7 @@ const Cadeirantes = () =>{
     const dadosParaEnvio = {
       nm_cadeirante: formData.nomeCompletoCadeirante,
       cpf_cadeirante: formData.cpfCadeirante,
-      tamanho_blusa: formData.tamanho_blusa,
+      tamanho_blusa: situacaoBlusa,
       s_n_cadeira: situacao
       // Se você for usar `distanciaCadeirante`, adicione aqui também
     }
