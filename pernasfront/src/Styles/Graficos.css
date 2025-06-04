@@ -33,6 +33,18 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
+
+  .graf-cadeirante-corrida{
+    margin-top: 5%;
+    width: 40%;
+  }
+
+  .titulo-graf-cadeirante-corrida{
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   /* .HeaderGrafico img {
     height: 60px;

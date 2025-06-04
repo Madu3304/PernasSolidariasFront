@@ -25,7 +25,7 @@ const Grafico = () => {
       .then(response => {
         const dadosFormatados = response.data.map(item => ({
           name: item.nome,
-          valor: item.qtd
+          Valor: item.qtd
         }));
         setDados(dadosFormatados);
         setCarregando(false);
@@ -39,16 +39,16 @@ const Grafico = () => {
   return (
     <div className="tela">
       <Header/>
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-4">Cadeirantes que mais participaram de corridas</h2>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="graf-cadeirante-corrida">
+        <h2 className="titulo-graf-cadeirante-corrida">Cadeirantes que mais participaram de corridas</h2>
+        <ResponsiveContainer width="100%" height={250}>
           <LineChart data={dados}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="valor" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey="Valor" stroke="#8884d8" activeDot={{ r: 8 }} />
           </LineChart>
         </ResponsiveContainer>
       </div>
