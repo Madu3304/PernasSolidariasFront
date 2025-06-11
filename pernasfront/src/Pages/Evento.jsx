@@ -51,6 +51,13 @@ const Evento = () =>{
       return;
     }
 
+    const distRegex = /^\d*$/
+    const matchDist = formData.distancia.match(distRegex)
+    if(!matchDist) {
+      toast.warn("Escreva um número para o campo Distância")
+      return
+    }
+
     const dataFormatada = `${match[3]}-${match[2]}-${match[1]}`;
 
     const dadosParaEnvio = {
