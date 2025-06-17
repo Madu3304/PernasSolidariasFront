@@ -2,8 +2,11 @@ import '../Styles/Relatorio.css'
 import Header from "../Components/HeaderCabecalho"
 import { toast } from 'react-toastify'
 import { FiAlignJustify, FiEdit2, FiTrash2 } from "react-icons/fi"
-import React from 'react'; 
-import { useEffect, useState } from 'react'; 
+import React from 'react'
+import { useEffect, useState } from 'react'
+import ModalEditar from './Models/RelaEditarModel.jsx'
+
+
 const Relatorio = () => {
 
     const [users, setUsers] = useState([])
@@ -71,8 +74,8 @@ const Relatorio = () => {
 
         const [menuOpen, setMenuOpen] = useState(null);
         const toggleMenu = (userId) => {
-            setMenuOpen(menuOpen === userId ? null : userId);
-        };
+            setMenuOpen(menuOpen === userId ? null : userId)
+        }
 
     return (
         <div className="user-list-container">
@@ -99,10 +102,14 @@ const Relatorio = () => {
                                             <button onClick={() => handleEdit(user.id)} className="ButaoCoisas">
                                                 <FiEdit2 className="icon" />
                                             </button>
+                                       </div>
+                                       <ModalEditar/>
+                                       <div className="dropdownMenu">
                                             <button onClick={() => handleDelete(user.id)} className="ButaoCoisas">
                                                 <FiTrash2 className="icon" />
                                             </button>
-                                        </div>
+                                       </div>
+                                       <Model/>
                                     </td>
                                 </tr>
                             ))}
