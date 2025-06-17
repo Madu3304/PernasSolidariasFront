@@ -18,6 +18,8 @@ import Header from "../Components/HeaderCabecalho";
 const Grafico = () => {
 
   const [dadosCadeirante, setDadosCadeirante] = useState([]);
+  const [dadosCorredor, setDadosCorredor] = useState([]);
+  const [dadosEvento, setDadosEvento] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
@@ -28,6 +30,39 @@ const Grafico = () => {
           Valor: item.qtd
         }));
         setDadosCadeirante(dadosCadeiranteFormatados);
+        setCarregando(false);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados do gráfico:', error);
+        setCarregando(false);
+      });
+  }, []);
+
+  
+  useEffect(() => {
+    axios.get('http://localhost:3000/Relatorio/grafico-corredores')
+      .then(response => {
+        const dadosCorredorFormatados = response.data.map(item => ({
+          name: item.nome,
+          Valor: item.qtd
+        }));
+        setDadosCorredor(dadosCorredorFormatados);
+        setCarregando(false);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados do gráfico:', error);
+        setCarregando(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/Relatorio/grafico-eventos')
+      .then(response => {
+        const dadosEventoFormatados = response.data.map(item => ({
+          name: item.nome,
+          Valor: item.qtd
+        }));
+        setDadosEvento(dadosEventoFormatados);
         setCarregando(false);
       })
       .catch(error => {
@@ -62,7 +97,7 @@ const Grafico = () => {
           <ResponsiveContainer width="100%" aspect={0.7}>
             <BarChart
               layout="vertical"
-              data={dadosCadeirante}
+              data={dadosCorredor}
               margin={{ left: 30 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
@@ -79,7 +114,7 @@ const Grafico = () => {
           <ResponsiveContainer width="100%" aspect={0.7}>
             <BarChart
               layout="vertical"
-              data={dadosCadeirante}
+              data={dadosEvento}
               margin={{ left: 30 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
