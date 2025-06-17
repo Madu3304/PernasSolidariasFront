@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import React from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Header from "../Components/HeaderCabecalho";
 
 // const data = [
@@ -17,17 +17,17 @@ import Header from "../Components/HeaderCabecalho";
 
 const Grafico = () => {
 
-  const [dados, setDados] = useState([]);
+  const [dadosCadeirante, setDadosCadeirante] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
     axios.get('http://localhost:3000/Relatorio/grafico-cadeirantes')
       .then(response => {
-        const dadosFormatados = response.data.map(item => ({
+        const dadosCadeiranteFormatados = response.data.map(item => ({
           name: item.nome,
-          valor: item.qtd
+          Valor: item.qtd
         }));
-        setDados(dadosFormatados);
+        setDadosCadeirante(dadosCadeiranteFormatados);
         setCarregando(false);
       })
       .catch(error => {
@@ -39,18 +39,58 @@ const Grafico = () => {
   return (
     <div className="tela">
       <Header/>
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-4">Cadeirantes que mais participaram de corridas</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={dados}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="valor" stroke="#8884d8" activeDot={{ r: 8 }} />
-          </LineChart>
-        </ResponsiveContainer>
+      <div className="graficos">
+        <div className="graf-cadeirante-corrida">
+          <h2 className="titulo-graf-cadeirante-corrida">Cadeirantes que mais participaram de corridas</h2>
+          <ResponsiveContainer width="100%" aspect={0.7}>
+            <BarChart
+              layout="vertical"
+              data={dadosCadeirante}
+              margin={{ left: 30 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="number" />
+              <YAxis dataKey="name" type="category" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Valor" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="graf-corredor-corrida">
+          <h2 className="titulo-graf-corredor-corrida">Corredores que mais participaram de corridas</h2>
+          <ResponsiveContainer width="100%" aspect={0.7}>
+            <BarChart
+              layout="vertical"
+              data={dadosCadeirante}
+              margin={{ left: 30 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="number" />
+              <YAxis dataKey="name" type="category" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Valor" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="graf-evento-inscricoes">
+          <h2 className="titulo-graf-evento-inscricoes">Eventos com mais inscrições</h2>
+          <ResponsiveContainer width="100%" aspect={0.7}>
+            <BarChart
+              layout="vertical"
+              data={dadosCadeirante}
+              margin={{ left: 30 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="number" />
+              <YAxis dataKey="name" type="category" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Valor" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

@@ -33,6 +33,49 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
+
+
+  .graficos{
+    display: flex;
+    margin-top: 6%;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .graf-cadeirante-corrida{
+    width: 25%;
+  }
+
+  .titulo-graf-cadeirante-corrida{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+    font-weight: bold;
+  }
+
+  .graf-corredor-corrida{
+    width: 25%;
+  }
+
+  .titulo-graf-corredor-corrida{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+    font-weight: bold;
+  }
+
+  .graf-evento-inscricoes{
+    width: 25%;
+  }
+
+  .titulo-graf-evento-inscricoes{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+    font-weight: bold;
+  }
+
+
   
   /* .HeaderGrafico img {
     height: 60px;
