@@ -1,10 +1,12 @@
-// import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import { useState } from "react"
 import Header from "../Components/HeaderCabecalho"
 import "../Styles/Cadeirante.css"
+import { useNavigate } from "react-router-dom"
 
 const Cadeirantes = () =>{
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     nomeCompletoCadeirante: "",
@@ -19,7 +21,6 @@ const Cadeirantes = () =>{
       };
     }
 
-    // Regex para validar CPF com pontuação
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
     if (!cpfRegex.test(data.cpfCadeirante)) {
       return {
@@ -68,6 +69,7 @@ const Cadeirantes = () =>{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(dadosParaEnvio),
     })
@@ -80,9 +82,24 @@ const Cadeirantes = () =>{
       .then((data) => {
         toast.success("Cadeirante cadastrado com sucesso!");
         console.log("Resposta do back:", data);
+        setFormData({
+          nomeCompletoCadeirante: "",
+          cpfCadeirante: ""
+        });
+        setSituacaoBlusa("")
+        setSituacao("")
       })
       .catch((err) => {
-        console.error("Erro ao cadastrar cadeirante:", err.message);
+        console.error("Erro na requisição:", err.message);
+
+        if (err.message.includes("Token inválido") || err.message.includes("Token não fornecido")) {
+          alert("Sessão expirada. Por favor, faça login novamente.")
+          // toast.error("Sessão expirada. Por favor, faça login novamente.");
+
+          localStorage.removeItem('token');
+
+          navigate('/')
+        }
       })
   }
 

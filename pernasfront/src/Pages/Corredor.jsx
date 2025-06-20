@@ -1,37 +1,40 @@
-import { Link } from "react-router-dom";
 import "../Styles/Corredor.css";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Header from "../Components/HeaderCabecalho";
+import { useNavigate } from "react-router-dom";
 
 const Corredor = () => {
- const [formData, setFormData] = useState({
-    nm_corredor: "",
-    cpf_corredor: "",
-    tamanho_blusa: "",
-});
-
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate()
   const [situacao, setSituacao] = useState("");
   const opcoes = ["Selecione", "PP", "P", "M", "G", "GG"];
 
-const validarInscricao = (data) => {
-  if (!data.nm_corredor || !data.cpf_corredor || !data.tamanho_blusa) {
-    return {
-      valido: false,
-      mensagem: "Por favor, preencha todos os campos obrigatórios.",
-    };
-  }
+  const [formData, setFormData] = useState({
+      nm_corredor: "",
+      cpf_corredor: "",
+      tamanho_blusa: "",
+  });
 
-  const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-  if (!cpfRegex.test(data.cpf_corredor)) {
-    return {
-      valido: false,
-      mensagem: "CPF inválido. Use o formato XXX.XXX.XXX-XX",
-    };
-  }
 
-  return { valido: true };
-};
+  const validarInscricao = (data) => {
+    if (!data.nm_corredor || !data.cpf_corredor || !data.tamanho_blusa) {
+      return {
+        valido: false,
+        mensagem: "Por favor, preencha todos os campos obrigatórios.",
+      };
+    }
+
+    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    if (!cpfRegex.test(data.cpf_corredor)) {
+      return {
+        valido: false,
+        mensagem: "CPF inválido. Use o formato XXX.XXX.XXX-XX",
+      };
+    }
+
+    return { valido: true };
+  };
 
 
   const handleChange = (e) => {
@@ -62,6 +65,7 @@ const validarInscricao = (data) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(dataParaEnviar),
     })
@@ -84,8 +88,17 @@ const validarInscricao = (data) => {
         setSituacao("");
       })
       .catch((err) => {
-        console.error("Erro ao cadastrar Corredor:", err.message);
-      });
+        console.error("Erro na requisição:", err.message);
+
+        if (err.message.includes("Token inválido") || err.message.includes("Token não fornecido")) {
+          alert("Sessão expirada. Por favor, faça login novamente.")
+          // toast.error("Sessão expirada. Por favor, faça login novamente.");
+
+          localStorage.removeItem('token');
+
+          navigate('/')
+        }
+      })
   };
 
   return (

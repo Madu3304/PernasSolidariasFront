@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "../Styles/Evento.css"
 import logo from "../assets/logo_sem fundo.png"
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { use, useState } from "react";
 import Header from "../Components/HeaderCabecalho";
 
 
 const Evento = () =>{
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     nm_evento: "",
@@ -70,18 +72,37 @@ const Evento = () =>{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(dadosParaEnvio),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          return res.text().then(text => { throw new Error(text) });
+        }
+        return res.json();
+      })
       .then((data) => {
         toast.success("Evento cadastrado com sucesso!")
-        // setFormData('')
-        // formData.nm_evento = ''
         console.log("Resposta do back:", data)
+        setFormData({
+          nm_evento: "",
+          dt_corrida: "",
+          distancia: "",
+          local_corrida: ""
+        })
       })
       .catch((err) => {
-        console.error("Erro ao evento cadeirante:", err)
+        console.error("Erro na requisição:", err.message);
+
+        if (err.message.includes("Token inválido") || err.message.includes("Token não fornecido")) {
+          alert("Sessão expirada. Por favor, faça login novamente.")
+          // toast.error("Sessão expirada. Por favor, faça login novamente.");
+
+          localStorage.removeItem('token');
+
+          navigate('/')
+        }
       })
   }
 
@@ -103,7 +124,7 @@ const Evento = () =>{
           />
         </div>
         <div className="formulario__campo">
-          <label htmlFor="distancia">Distância:</label>
+          <label htmlFor="distancia">Distância (Em quilômetros):</label>
           <input
             type="text"
             id="distancia"
