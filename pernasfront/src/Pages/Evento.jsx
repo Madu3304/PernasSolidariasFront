@@ -62,6 +62,15 @@ const Evento = () =>{
 
     const dataFormatada = `${match[3]}-${match[2]}-${match[1]}`;
 
+    const dataEvento = new Date(dataFormatada);
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);  // Zera hora para comparar apenas a data
+
+    if (dataEvento < hoje) {
+      toast.warn("A data da corrida não pode ser anterior a hoje.");
+      return;
+    }
+
     const dadosParaEnvio = {
       ...formData,
       dt_corrida: dataFormatada
