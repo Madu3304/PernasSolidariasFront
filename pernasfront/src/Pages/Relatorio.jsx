@@ -91,7 +91,6 @@ const Relatorio = () => {
             <Header />
             <h2 className='titulo'>Duplas</h2>
             <div className="table-wrapper">
-                {loading && <p className="message">Carregando dados...</p>}
                 {users.length > 0 ? (
                     <table className="user-table">
                         <thead>
@@ -112,13 +111,13 @@ const Relatorio = () => {
                                                 <FiEdit2 className="icon" />
                                             </button>
                                        </div>
-                                       <ModalEditar/>
+                                       <EditarModal/>
                                        <div className="dropdownMenu">
                                             <button onClick={() => handleDelete(user.id)} className="ButaoCoisas">
                                                 <FiTrash2 className="icon" />
                                             </button>
                                        </div>
-                                       <Model/>
+                                       <DeletarModal/>
                                     </td>
                                 </tr>
                             ))}

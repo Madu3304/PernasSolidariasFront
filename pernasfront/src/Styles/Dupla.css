@@ -1,0 +1,111 @@
+.duplasConta {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.duplasConta h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.duplasConta label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
+}
+
+.duplasConta input[type="text"] {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.duplasConta input[type="text"]:focus {
+  outline: none;
+  border-color: #3AD690;
+  box-shadow: 0 0 5px #3AD690(74,144,226,0.5);
+}
+
+.autocomplete-list {
+  position: relative;
+  max-height: 160px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  list-style: none;
+  margin-top: 0;
+  padding-left: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.autocomplete-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.autocomplete-list li:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-list li:hover {
+  background-color: #3AD690;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+thead tr {
+  background-color: #3AD690;
+  color: white;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f7fc;
+}
+
+.salva {
+  background-color: #3AD690;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 270px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.salva :hover {
+  background-color: #2ecc71;
+}

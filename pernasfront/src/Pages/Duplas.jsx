@@ -1,158 +1,234 @@
-import '../Styles/Relatorio.css'
+import React, { useState, useEffect } from "react"
 import Header from "../Components/HeaderCabecalho"
-import { FiEdit2, FiTrash2, FiDownload } from "react-icons/fi"
-import EditarModal from "../Components/Model/EditarModal.jsx"
-import DeletarModal from '../Components/Model/DeletarModal.jsx'
-import React, { useState, useEffect } from 'react'
+import "../Styles/Dupla.css"
 
 const Dupla = () => {
-    const [users, setUsers] = useState([])
-    const [userToEdit, setUserToEdit] = useState(null)
-    const [userToDelete, setUserToDelete] = useState(null)
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const [eventoQuery, setEventoQuery] = useState("")
+  const [eventos, setEventos] = useState([])
+  const [eventoSelecionado, setEventoSelecionado] = useState(null)
 
-    useEffect(() => {
-        const fetchDuplas = async () => {
-            try {
-                const response = await fetch("http://localhost:3000/relatorios/listarRelatorios", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
+  const [duplas, setDuplas] = useState([
+    { corredorId: null, corredorNome: "", cadeiranteId: null, cadeiranteNome: "" }
+  ])
 
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP! Status: ${response.status}`)
-                }
+  const [corredoresSugestoes, setCorredoresSugestoes] = useState([])
+  const [cadeirantesSugestoes, setCadeirantesSugestoes] = useState([])
 
-                const data = await response.json()
-                setUsers(data) // Assumindo que 'data' é um array de usuários/relatórios
-                console.log("Resposta do back para listar:", data)
+  // Busca eventos conforme o usuário digita
+  useEffect(() => {
+    if (eventoQuery.length > 1) {
+      DuplasService.buscarEventos(eventoQuery).then(setEventos)
+    } else {
+      setEventos([])
+    }
+  }, [eventoQuery])
 
-            } catch (error) {
-                console.error("Erro ao listar relatórios:", error)
-            }
-        }
+  // Atualiza autocomplete corredor para a linha index
+  const buscarCorredores = async (query, index) => {
+    if (query.length > 0) {
+      const res = await DuplasService.buscarCorredores(query)
+      setCorredoresSugestoes(res)
+    } else {
+      setCorredoresSugestoes([])
+    }
+  }
 
-        fetchDuplas();
-    }, [])
+  // Atualiza autocomplete cadeirante para a linha index
+  const buscarCadeirantes = async (query, index) => {
+    if (query.length > 0) {
+      const res = await DuplasService.buscarCadeirantes(query)
+      setCadeirantesSugestoes(res)
+    } else {
+      setCadeirantesSugestoes([])
+    }
+  }
 
-    const handleOpenEditModal = (user) => {
-        setUserToEdit(user)
-        setIsEditModalOpen(true)
+  // Atualiza valor corredor na linha index
+  const handleCorredorChange = (index, value) => {
+    const novasDuplas = [...duplas]
+    novasDuplas[index].corredorNome = value
+    novasDuplas[index].corredorId = null
+    setDuplas(novasDuplas)
+    buscarCorredores(value, index)
+  }
+
+  // Atualiza valor cadeirante na linha index
+  const handleCadeiranteChange = (index, value) => {
+    const novasDuplas = [...duplas]
+    novasDuplas[index].cadeiranteNome = value
+    novasDuplas[index].cadeiranteId = null
+    setDuplas(novasDuplas)
+    buscarCadeirantes(value, index)
+  }
+
+  // Seleciona corredor da lista de sugestões
+  const selecionarCorredor = (index, corredor) => {
+    const novasDuplas = [...duplas]
+    novasDuplas[index].corredorNome = corredor.nome
+    novasDuplas[index].corredorId = corredor.id
+    setDuplas(novasDuplas)
+    setCorredoresSugestoes([])
+  }
+
+  // Seleciona cadeirante da lista de sugestões
+  const selecionarCadeirante = (index, cadeirante) => {
+    const novasDuplas = [...duplas]
+    novasDuplas[index].cadeiranteNome = cadeirante.nome
+    novasDuplas[index].cadeiranteId = cadeirante.id
+    setDuplas(novasDuplas)
+    setCadeirantesSugestoes([])
+  }
+
+  // Adiciona nova linha dupla
+  const adicionarLinha = () => {
+    setDuplas([...duplas, { corredorId: null, corredorNome: "", cadeiranteId: null, cadeiranteNome: "" }])
+  }
+
+  // Remove linha dupla
+  const removerLinha = (index) => {
+    const novasDuplas = duplas.filter((_, i) => i !== index)
+    setDuplas(novasDuplas)
+  }
+
+  // Salvar duplas
+  const salvar = async () => {
+    if (!eventoSelecionado) {
+      alert("Selecione um evento antes de salvar")
+      return
     }
 
-    const handleOpenDeleteModal = (user) => {
-        setUserToDelete(user)
-        setIsDeleteModalOpen(true)
+    // Verifica se todas as duplas tem ids selecionados
+    for (let i = 0; i < duplas.length; i++) {
+      if (!duplas[i].corredorId || !duplas[i].cadeiranteId) {
+        alert(`Preencha corretamente corredor e cadeirante na linha ${i + 1}`)
+        return
+      }
     }
 
-    const handleEditConfirm = (updatedUser) => {
-        console.log("Confirmando edição para:", updatedUser)
-        // Lógica para enviar a edição para o back-end (você precisaria de um fetch/axios aqui)
-        setUsers(users.map(u => u.id === updatedUser.id ? updatedUser : u))
-        setIsEditModalOpen(false)
-        setUserToEdit(null)
-    };
+    // Formata dados para backend
+    const dadosSalvar = duplas.map(d => ({
+      corredorId: d.corredorId,
+      cadeiranteId: d.cadeiranteId
+    }))
 
-    const handleDeleteConfirm = async () => {
-        if (userToDelete) {
-            console.log(`Deletando usuário com ID: ${userToDelete.id}`)
-            try {
-                const response = await fetch(`http://localhost:3000/Duplas/deletar/${userToDelete.id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`)
-                }
-                // Se a deleção for bem-sucedida, atualiza o estado
-                setUsers(users.filter(user => user.id !== userToDelete.id))
-                // toast.success("Usuário deletado com sucesso!") // Descomente se tiver o toast
-            } catch (error) {
-                console.error("Erro ao deletar usuário:", error)
-                // toast.error("Erro ao deletar usuário") // Descomente se tiver o toast
-            }
-        }
-        setIsDeleteModalOpen(false)
-        setUserToDelete(null)
+    try {
+      await DuplasService.salvarDuplasEvento(eventoSelecionado.id, dadosSalvar)
+      alert("Duplas salvas com sucesso!")
+      // Opcional: limpar formulário
+      setDuplas([{ corredorId: null, corredorNome: "", cadeiranteId: null, cadeiranteNome: "" }])
+      setEventoSelecionado(null)
+      setEventoQuery("")
+    } catch (error) {
+      console.error(error)
+      alert("Erro ao salvar duplas")
     }
+  }
 
-    // A função toggleMenu e o estado menuOpen não parecem ser usados, pode removê-los
-    // const toggleMenu = (userId) => {
-    //     setMenuOpen(menuOpen === userId ? null : userId)
-    // }
+  return (
+    <div className="duplasConta">
+        <Header />
+      <h2>Associar Duplas ao Evento</h2>
 
-    return (
-        <div className="user-list-container">
-            <Header />
-            <h2 className='titulo'>Duplas</h2>
-            <div className="table-wrapper">
-                {users.length > 0 ? (
-                    <table className="user-table">
-                        <thead>
-                            <tr>
-                                <th>Corredor</th>
-                                <th>Cadeirante</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map(user => (
-                                <tr key={user.id}>
-                                    <td>{user.Corredor}</td>
-                                    <td>{user.Cadeirante}</td>
-                                    <td className="actions-cell">
-                                        <button onClick={() => handleOpenEditModal(user)} className="ButaoCoisas">
-                                            <FiEdit2 className="icon" />
-                                        </button>
-                                        <button onClick={() => handleOpenDeleteModal(user)} className="ButaoCoisas">
-                                            <FiTrash2 className="icon" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                ) : (
-                    <p className="message">Nenhum dado encontrado.</p>
-                )}
-            </div>
-
-            {/* Modal de Edição */}
-            <EditarModal
-                isOpen={isEditModalOpen}
-                setModalOpen={setIsEditModalOpen}
-                user={userToEdit}
-                onEditConfirm={handleEditConfirm}
+      <label>Buscar evento:</label>
+      <input
+        type="text"
+        value={eventoQuery}
+        onChange={(e) => setEventoQuery(e.target.value)}
+        placeholder="Digite nome do evento"
+      />
+      {eventos.length > 0 && (
+        <ul className="autocomplete-list">
+          {eventos.map(ev => (
+            <li
+              key={ev.id}
+              onClick={() => {
+                setEventoSelecionado(ev)
+                setEventoQuery(ev.nome)
+                setEventos([])
+              }}
             >
-                {/* O children aqui pode ser um título ou instrução geral */}
-            </EditarModal>
+              {ev.nome}
+            </li>
+          ))}
+        </ul>
+      )}
 
-            {/* Modal de Deleção */}
-            <DeletarModal
-                isOpen={isDeleteModalOpen}
-                setModalOpen={setIsDeleteModalOpen}
-                user={userToDelete}
-                onDeleteConfirm={handleDeleteConfirm}
-            >
-                {userToDelete ? (
-                    <p>Tem certeza que deseja deletar a dupla **{userToDelete.Corredor} e {userToDelete.Cadeirante}**?</p>
-                ) : (
-                    <p>Tem certeza que deseja deletar este item?</p>
-                )}
-            </DeletarModal>
+      {eventoSelecionado && (
+        <div>
+          <h3>Evento selecionado: {eventoSelecionado.nome}</h3>
 
-            <button className="download_button">
-                <a href="http://localhost:3000/Duplas/download-csv" 
-                    className="download" title="Baixar Relatório CSV">
-                    <FiDownload className="icon" /> Salvar Lista</a>
-            </button>
+          <table>
+            <thead>
+              <tr>
+                <th>Corredor</th>
+                <th>Cadeirante</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {duplas.map((dupla, index) => (
+                <tr key={index}>
+                  <td>
+                    <input
+                      type="text"
+                      value={dupla.corredorNome}
+                      onChange={(e) => handleCorredorChange(index, e.target.value)}
+                      placeholder="Digite nome corredor"
+                      autoComplete="off"
+                    />
+                    {/* Sugestões corredor */}
+                    {corredoresSugestoes.length > 0 && dupla.corredorNome && (
+                      <ul className="autocomplete-list">
+                        {corredoresSugestoes.map(corredor => (
+                          <li
+                            key={corredor.id}
+                            onClick={() => selecionarCorredor(index, corredor)}
+                          >
+                            {corredor.nome}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={dupla.cadeiranteNome}
+                      onChange={(e) => handleCadeiranteChange(index, e.target.value)}
+                      placeholder="Digite nome cadeirante"
+                      autoComplete="off"
+                    />
+                    {/* Sugestões cadeirante */}
+                    {cadeirantesSugestoes.length > 0 && dupla.cadeiranteNome && (
+                      <ul className="autocomplete-list">
+                        {cadeirantesSugestoes.map(cadeirante => (
+                          <li
+                            key={cadeirante.id}
+                            onClick={() => selecionarCadeirante(index, cadeirante)}
+                          >
+                            {cadeirante.nome}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                  <td>
+                    <button className="salva" onClick={() => removerLinha(index)}>Remover</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <button className="salva" onClick={adicionarLinha}>Adicionar Linha</button>
+
+          <br />
+
+          <button className="salva" onClick={salvar}>Salvar</button>
         </div>
-    )
+      )}
+    </div>
+  )
 }
 
 export default Dupla
