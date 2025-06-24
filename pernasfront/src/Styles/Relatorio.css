@@ -103,6 +103,37 @@
     font-size: 1.2em;
 }
 
+.download_button {
+    margin-top: 20px; 
+    text-align: right; 
+    margin-bottom: 15px; 
+    padding-right: 20px;
+}
+
+.download_button {
+    display: inline-flex; 
+    align-items: center;
+    gap: 8px; 
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.download_button:hover {
+    background-color: #3AD690;
+}
+
+.download_button .icon {
+    font-size: 18px; 
+}
+
 @media (max-width: 768px) {
     .user-table thead {
         display: none; 

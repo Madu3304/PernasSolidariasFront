@@ -22,10 +22,13 @@ const headerCabecalho = () => {
             <Link to="/cadeirante" className="header__link" activeClassName="active">Cadeirantes</Link>
           </li>
           <li className="header__item">
-            <a href="/relatorio" className="header__link" activeClassName="active">Relatórios</a>
+            <Link to="/evento" className="header__link" activeClassName="active">Evento</Link>
           </li>
           <li className="header__item">
-            <Link to="/evento" className="header__link" activeClassName="active">Evento</Link>
+            <Link to="/relatorio" className="header__link" activeClassName="active">Relatórios</Link>
+          </li>
+          <li className="header__item">
+            <Link to="/dupla" className="header__link" activeClassName="active">Criar Duplas</Link>
           </li>
           <li className="header__item">
             <Link to="/graficos" className="header__link" activeClassName="active">Gráficos</Link>

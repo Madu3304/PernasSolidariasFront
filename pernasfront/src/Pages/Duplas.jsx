@@ -5,7 +5,7 @@ import EditarModal from "../Components/Model/EditarModal.jsx"
 import DeletarModal from '../Components/Model/DeletarModal.jsx'
 import React, { useState, useEffect } from 'react'
 
-const Relatorio = () => {
+const Dupla = () => {
     const [users, setUsers] = useState([])
     const [userToEdit, setUserToEdit] = useState(null)
     const [userToDelete, setUserToDelete] = useState(null)
@@ -13,7 +13,7 @@ const Relatorio = () => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 
     useEffect(() => {
-        const fetchRelatorios = async () => {
+        const fetchDuplas = async () => {
             try {
                 const response = await fetch("http://localhost:3000/relatorios/listarRelatorios", {
                     method: "GET",
@@ -35,7 +35,7 @@ const Relatorio = () => {
             }
         }
 
-        fetchRelatorios();
+        fetchDuplas();
     }, [])
 
     const handleOpenEditModal = (user) => {
@@ -60,7 +60,7 @@ const Relatorio = () => {
         if (userToDelete) {
             console.log(`Deletando usuário com ID: ${userToDelete.id}`)
             try {
-                const response = await fetch(`http://localhost:3000/relatorios/deletar/${userToDelete.id}`, {
+                const response = await fetch(`http://localhost:3000/Duplas/deletar/${userToDelete.id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -91,7 +91,6 @@ const Relatorio = () => {
             <Header />
             <h2 className='titulo'>Duplas</h2>
             <div className="table-wrapper">
-                {loading && <p className="message">Carregando dados...</p>}
                 {users.length > 0 ? (
                     <table className="user-table">
                         <thead>
@@ -104,21 +103,15 @@ const Relatorio = () => {
                         <tbody>
                             {users.map(user => (
                                 <tr key={user.id}>
-                                    <td>{user.corredor?.nomeCorredor}</td>
-                                    <td>{user.cadeirante?.nomeCadeirante}</td>
+                                    <td>{user.Corredor}</td>
+                                    <td>{user.Cadeirante}</td>
                                     <td className="actions-cell">
-                                        <div className="dropdownMenu">
-                                            <button onClick={() => handleEdit(user.id)} className="ButaoCoisas">
-                                                <FiEdit2 className="icon" />
-                                            </button>
-                                       </div>
-                                       <ModalEditar/>
-                                       <div className="dropdownMenu">
-                                            <button onClick={() => handleDelete(user.id)} className="ButaoCoisas">
-                                                <FiTrash2 className="icon" />
-                                            </button>
-                                       </div>
-                                       <Model/>
+                                        <button onClick={() => handleOpenEditModal(user)} className="ButaoCoisas">
+                                            <FiEdit2 className="icon" />
+                                        </button>
+                                        <button onClick={() => handleOpenDeleteModal(user)} className="ButaoCoisas">
+                                            <FiTrash2 className="icon" />
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
@@ -154,12 +147,12 @@ const Relatorio = () => {
             </DeletarModal>
 
             <button className="download_button">
-                <a href="http://localhost:3000/relatorios/download-csv" 
+                <a href="http://localhost:3000/Duplas/download-csv" 
                     className="download" title="Baixar Relatório CSV">
-                    <FiDownload className="icon" /> Emitir Relatório</a>
+                    <FiDownload className="icon" /> Salvar Lista</a>
             </button>
         </div>
     )
 }
 
-export default Relatorio
+export default Dupla
