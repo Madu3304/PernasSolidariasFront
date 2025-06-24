@@ -91,6 +91,7 @@ const Relatorio = () => {
             <Header />
             <h2 className='titulo'>Duplas</h2>
             <div className="table-wrapper">
+                {loading && <p className="message">Carregando dados...</p>}
                 {users.length > 0 ? (
                     <table className="user-table">
                         <thead>
@@ -103,15 +104,21 @@ const Relatorio = () => {
                         <tbody>
                             {users.map(user => (
                                 <tr key={user.id}>
-                                    <td>{user.Corredor}</td>
-                                    <td>{user.Cadeirante}</td>
+                                    <td>{user.corredor?.nomeCorredor}</td>
+                                    <td>{user.cadeirante?.nomeCadeirante}</td>
                                     <td className="actions-cell">
-                                        <button onClick={() => handleOpenEditModal(user)} className="ButaoCoisas">
-                                            <FiEdit2 className="icon" />
-                                        </button>
-                                        <button onClick={() => handleOpenDeleteModal(user)} className="ButaoCoisas">
-                                            <FiTrash2 className="icon" />
-                                        </button>
+                                        <div className="dropdownMenu">
+                                            <button onClick={() => handleEdit(user.id)} className="ButaoCoisas">
+                                                <FiEdit2 className="icon" />
+                                            </button>
+                                       </div>
+                                       <ModalEditar/>
+                                       <div className="dropdownMenu">
+                                            <button onClick={() => handleDelete(user.id)} className="ButaoCoisas">
+                                                <FiTrash2 className="icon" />
+                                            </button>
+                                       </div>
+                                       <Model/>
                                     </td>
                                 </tr>
                             ))}
